@@ -4,7 +4,7 @@ import Home from '@/container/Home'
 
 const Index: NextPage = () => {
   return (
-    <Page title="Home" className="bg-white">
+    <Page title="Home" className="bg-[#F8F8F8]">
       <Home />
     </Page>
   )

@@ -2,3 +2,213 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Inter";
+  src: url("../../public/fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../../public/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../../public/fonts/Inter-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../../public/fonts/Inter-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../../public/fonts/Inter-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 50000s ease-in-out 0s, color 5000s ease-in-out 0s;
+}
+
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
+}
+
+*:focus {
+  box-shadow: none !important;
+}
+
+*[data-focus] {
+  box-shadow: none !important;
+}
+
+html {
+  font-family: "Inter" !important;
+  /* direction: rtl; */
+}
+
+@layer components {
+  .hover-underline-animation {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hover-underline-animation-blue {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation-blue::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #6042ec;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation-blue:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hover-underline-animation-red {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation-red::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff4060;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation-red:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hover-underline-animation-yellow {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation-yellow::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffc040;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation-yellow:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  .hover-underline-animation-orange {
+    display: inline-block;
+    position: relative;
+  }
+
+  .hover-underline-animation-orange::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff8040;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .hover-underline-animation-orange:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+}
+
+.swiper-wrapper {
+  @apply !h-[450px];
+}
+
+.swiper {
+  @apply !h-[550px];
+}
+
+.swiper-slide .quote-wrapper {
+  @apply flex items-start gap-4 p-20 pl-5 text-gray-400 transition-all bg-transparent rounded-xl;
+  animation-delay: 50ms;
+}
+
+.swiper-slide-active .quote-wrapper {
+  @apply !text-white !bg-mainBlue;
+}
+.swiper-slide > * {
+  @apply !opacity-75;
+}
+
+.swiper-slide-active > * {
+  @apply !opacity-100;
+}
+
+
+
+/* for pages contains text */
+
+.wpb_wrapper h2 {
+  @apply text-[25px] lg:text-[35px] translate-y-6 font-medium
+}
+.wpb_wrapper ul {
+  @apply flex flex-col gap-2 !list-disc pl-6
+}
+.wpb_wrapper a {
+  @apply text-mainBlue
+}
+
+.wpb_wrapper section > div{
+  @apply flex flex-col gap-6
+}
+.wpb_wrapper{
+  @apply flex flex-col gap-6
+}
