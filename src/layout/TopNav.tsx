@@ -11,12 +11,14 @@ import RouteLink from "@/components/topnav/RouteLink"
 import PlatformMenu from "./PlatformMenu"
 import ResourcesMenu from "./ResourcesMenu"
 import UsecaseMenu from "./UsecaseMenu"
+import { ExternalLink } from "@/functions/ExternalLinks"
 
 interface Props {
   setIsMenuOpen: (val: boolean) => void
+  onOpen:()=>void
 }
 
-const TopNav: React.FC<Props> = ({ setIsMenuOpen }) => {
+const TopNav: React.FC<Props> = ({ setIsMenuOpen ,onOpen }) => {
   const [useCaseMenu, setUseCaseMenu] = useState(false)
   const [platformMenu, setPlatformMenu] = useState(false)
   const [resourcesMenu, setResourcesMenu] = useState(false)
@@ -72,8 +74,8 @@ const TopNav: React.FC<Props> = ({ setIsMenuOpen }) => {
           </div>
         </div>
         <div className="flex items-center justify-between gap-4">
-          <p className="hidden lg:flex">Sign In</p>
-          <Search size={20} />
+          <p className="hidden cursor-pointer lg:flex" onClick={()=>ExternalLink()}>Sign In</p>
+          <Search size={20} onClick={onOpen} />
           <Menu
             size={20}
             className="lg:hidden"

@@ -2,6 +2,9 @@
 import React from "react"
 import { motion } from "framer-motion"
 
+import CloseButton from "@/components/CloseButton"
+import { ExternalLink } from "@/functions/ExternalLinks"
+
 interface Props {
   isOpen: boolean
   setIsOpen: (value: boolean) => void
@@ -17,29 +20,11 @@ const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
         isOpen ? "right-0" : "right-[78vw] sm:right-[360px]"
       }`}
     >
-      <div
-        onClick={() => setIsOpen(false)}
-        className="flex items-center self-end justify-center w-12 h-12 rounded-full"
-        style={{ backgroundColor: "rgba(0,0,0,.1)" }}
-      >
-        <motion.div
-          className="w-0.5 bg-white"
-          initial={{ x: 0, rotate: 45 }}
-          animate={isOpen ? { x: 0, rotate: 45, opacity: 1 , height : "26px" } : { opacity: 0 , height : 0 }}
-          transition={{ duration: 0.8, ease: [0.15, 0.2, 0.1, 0], delay: 0.5 }}
-        ></motion.div>
-        <motion.div
-          className="absolute w-0.5 bg-white"
-          initial={{ x: 0, rotate: 135 }}
-          animate={
-            isOpen ? { x: 0, rotate: 135, opacity: 1 , height : "26px" } : { opacity: 0 , height : 0 }
-          }
-          transition={{ duration: 0.8, ease: [0.15, 0.2, 0.1, 0], delay: 0.5 }}
-        ></motion.div>
-      </div>
+      <CloseButton isOpen={isOpen} onClick={() => setIsOpen(false)} hasDelay />
       <div
         className="p-4 mb-auto rounded"
         style={{ backgroundColor: "rgba(0,0,0,.1)" }}
+        onClick={() => ExternalLink()}
       >
         Sign In
       </div>
