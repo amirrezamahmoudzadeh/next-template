@@ -22,6 +22,7 @@ interface Props {
 }
 
 const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
+  const router = useRouter()
   return (
     <motion.div
       initial={{ right: -320, zIndex: -1 }}
