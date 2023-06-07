@@ -1,11 +1,13 @@
-import {
-    Drawer,
-    DrawerBody,
-    DrawerContent,
-    DrawerOverlay,
-    Input
-} from "@chakra-ui/react"
 import React from "react"
+import {
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerOverlay,
+  Input,
+} from "@chakra-ui/react"
+
+import { useLocaleText } from "@/hooks/useLocaleText"
 
 import CloseButton from "./CloseButton"
 
@@ -19,10 +21,13 @@ const SearchDrawer: React.FC<Props> = ({ isOpen, onClose }) => {
     <Drawer isOpen={isOpen} placement="top" onClose={onClose}>
       <DrawerOverlay />
       <DrawerContent>
-        <DrawerBody px={"10vw"} py={[10 ,10,20]} display={"flex"}>
+        <DrawerBody px={"10vw"} py={[10, 10, 20]} display={"flex"}>
           <Input
-          _placeholder={{color:"#232e3a"}}
-            placeholder="Type what you're looking for"
+            _placeholder={{ color: "#232e3a" }}
+            placeholder={useLocaleText(
+              "آنچه را که به دنبال آن هستید تایپ کنید",
+              "Type what you're looking for"
+            )}
             variant={"flushed"}
             _focusVisible={{ borderBottomColor: "#232e3a" }}
             borderBottomWidth={2}

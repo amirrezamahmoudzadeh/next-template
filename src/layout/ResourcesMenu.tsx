@@ -2,6 +2,7 @@
 
 import React from "react"
 
+import { useLocaleText } from "@/hooks/useLocaleText"
 import FooterLinksWrapper from "@/components/footer/FooterLinksWrapper"
 
 const ResourcesMenu: React.FC<{ setMenu: (value: boolean) => void }> = ({
@@ -9,33 +10,39 @@ const ResourcesMenu: React.FC<{ setMenu: (value: boolean) => void }> = ({
 }) => {
   return (
     <div
-      className="absolute inset-x-8 top-full bg-white !py-0 flex justify-between pl-8 rounded-lg shadow-lg -translate-y-2 overflow-hidden h-[176px]"
+      className="absolute inset-x-8 top-full bg-white !py-0 flex justify-between pl-8 rounded-lg shadow-lg -translate-y-2 overflow-hidden h-[176px] rtl:pl-0 rtl:pr-8"
       onMouseEnter={() => setMenu(true)}
       onMouseLeave={() => setMenu(false)}
     >
       <div className="flex justify-between flex-1 py-6 children:flex-1">
         <FooterLinksWrapper
-          header="Learn More"
+          header={useLocaleText("بیشتر بدانید", "Learn More")}
           links={[
-            { link: "/about", title: "About Us" },
-            { link: "/blog", title: "Blog" },
-            { link: "", title: "Help Center" },
+            { link: "/about", title: useLocaleText("درباره ما", "About Us") },
+            { link: "/blog", title: useLocaleText("وبلاگ", "Blog") },
+            { link: "", title: useLocaleText("مرکز پشتیبانی", "Help Center") },
           ]}
           isInTopNav
         />
         <FooterLinksWrapper
-          header="Documentation"
+          header={useLocaleText("مستندات", "Documentation")}
           links={[
-            { link: "", title: "Platform Documentation" },
-            { link: "", title: "API Refrence" },
-            { link: "", title: "Browser Extension" },
+            {
+              link: "",
+              title: useLocaleText("اسناد پلتفرم", "Platform Documentation"),
+            },
+            { link: "", title: useLocaleText("مرجع API", "API Refrence") },
+            {
+              link: "",
+              title: useLocaleText("افزونه مرورگر", "Browser Extension"),
+            },
           ]}
           isInTopNav
         />
         <FooterLinksWrapper
-          header="Userback Userversity"
+          header={useLocaleText("کاربری Userback", "Userback Userversity")}
           links={[
-            { link: "", title: "Resource Hub" },
+            { link: "", title: useLocaleText("مرکز منابع", "Resource Hub") },
           ]}
           isInTopNav
         />

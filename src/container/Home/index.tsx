@@ -8,7 +8,7 @@ import TitleAndButton from "@/components/TitleAndButton"
 import HomeItems from "./HomeItems"
 import HomeLanding from "./HomeLanding"
 
-const index = () => {
+const Index = () => {
   return (
     <>
       <HomeLanding />
@@ -26,8 +26,9 @@ const index = () => {
         <TitleAndButton
           buttonText="Start your risk free trial - no credit card required"
           className="mb-10"
-          text="Bring Product Managers and Developers into alignment. No guesswork
-            required."
+          text={
+            "Bring Product Managers and Developers into alignment. No guesswork required."
+          }
           desktopSize={35}
           maxWidth={670}
           mobileSize={24}
@@ -38,4 +39,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

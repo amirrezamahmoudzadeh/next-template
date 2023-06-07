@@ -3,6 +3,8 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { ExternalLink } from "@/functions/ExternalLinks"
 
+import { useLocaleText } from "@/hooks/useLocaleText"
+
 interface Links {
   title: string
   link: string
@@ -16,6 +18,10 @@ interface Props {
 
 const FooterLinksWrapper: React.FC<Props> = ({ header, links, isInTopNav }) => {
   const router = useRouter()
+  const alertText = useLocaleText(
+    "این یک لینک خارجی است",
+    "This is an external Link"
+  )
   return (
     <div className={`flex flex-col gap-2 ${isInTopNav ? "items-start" : ""}`}>
       <h3 className="font-bold">{header}</h3>
@@ -40,8 +46,12 @@ const FooterLinksWrapper: React.FC<Props> = ({ header, links, isInTopNav }) => {
           return (
             <div
               key={link.title}
-              onClick={() => ExternalLink()}
-              className={isInTopNav ? "hover-underline-animation cursor-pointer" : "cursor-pointer"}
+              onClick={() => ExternalLink(alertText)}
+              className={
+                isInTopNav
+                  ? "hover-underline-animation cursor-pointer"
+                  : "cursor-pointer"
+              }
             >
               {link.title}
             </div>

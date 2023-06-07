@@ -3,6 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { ExternalLink } from "@/functions/ExternalLinks"
 import MobileNavItem from "@/layout/MobileNavItem"
 import {
   Accordion,
@@ -13,8 +14,8 @@ import {
 } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
+import { useLocaleText } from "@/hooks/useLocaleText"
 import CloseButton from "@/components/CloseButton"
-import { ExternalLink } from "@/functions/ExternalLinks"
 
 interface Props {
   isOpen: boolean
@@ -23,6 +24,10 @@ interface Props {
 
 const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   const router = useRouter()
+  const alertText = useLocaleText(
+    "این یک لینک خارجی است",
+    "This is an external Link"
+  )
   return (
     <motion.div
       initial={{ right: -320, zIndex: -1 }}
@@ -36,7 +41,7 @@ const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
       <div
         className="p-4 mb-auto rounded"
         style={{ backgroundColor: "rgba(0,0,0,.1)" }}
-        onClick={() => ExternalLink()}
+        onClick={() => ExternalLink(alertText)}
       >
         Sign In
       </div>
@@ -200,15 +205,13 @@ const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
                 title="Documentation"
                 links={[
                   { link: "", title: " Platform Documentation" },
-                { link: "", title: "API Reference" },
-                { link: "", title: "Browser Extension" },
+                  { link: "", title: "API Reference" },
+                  { link: "", title: "Browser Extension" },
                 ]}
               />
               <MobileNavItem
                 title="Userback Userversity"
-                links={[
-                  { link: "", title: "Resource Hub" },
-                ]}
+                links={[{ link: "", title: "Resource Hub" }]}
               />
             </AccordionPanel>
           </AccordionItem>

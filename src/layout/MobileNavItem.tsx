@@ -1,13 +1,12 @@
-import React from "react"
-import Link from "next/link"
-import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-} from "@chakra-ui/react"
-import { ExternalLink } from "@/functions/ExternalLinks"
+import React from "react";
+import Link from "next/link";
+import { ExternalLink } from "@/functions/ExternalLinks";
+import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react";
+import { useLocaleText } from "@/hooks/useLocaleText";
+
+
+
+
 
 interface Props {
   title: string
@@ -18,6 +17,10 @@ interface Props {
 }
 
 const MobileNavItem: React.FC<Props> = ({ links, title }) => {
+  const alertText = useLocaleText(
+    "این یک لینک خارجی است",
+    "This is an external Link"
+  )
   return (
     <Accordion allowToggle>
       <AccordionItem
@@ -51,7 +54,7 @@ const MobileNavItem: React.FC<Props> = ({ links, title }) => {
                   <div
                     key={link.title}
                     className="text-sm"
-                    onClick={() => ExternalLink()}
+                    onClick={() => ExternalLink(alertText)}
                   >
                     {link.title}
                   </div>

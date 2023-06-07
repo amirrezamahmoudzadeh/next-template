@@ -1,30 +1,41 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable tailwindcss/classnames-order */
 
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/router"
+import { ExternalLink } from "@/functions/ExternalLinks"
 import { motion } from "framer-motion"
 import { Menu, Search } from "lucide-react"
-import Link from "next/link"
-import { useEffect, useState } from "react"
 
+import { useLocaleText } from "@/hooks/useLocaleText"
 import RouteLink from "@/components/topnav/RouteLink"
 
 import PlatformMenu from "./PlatformMenu"
 import ResourcesMenu from "./ResourcesMenu"
 import UsecaseMenu from "./UsecaseMenu"
-import { ExternalLink } from "@/functions/ExternalLinks"
 
 interface Props {
   setIsMenuOpen: (val: boolean) => void
-  onOpen:()=>void
+  onOpen: () => void
 }
 
-const TopNav: React.FC<Props> = ({ setIsMenuOpen ,onOpen }) => {
+const TopNav: React.FC<Props> = ({ setIsMenuOpen, onOpen }) => {
   const [useCaseMenu, setUseCaseMenu] = useState(false)
   const [platformMenu, setPlatformMenu] = useState(false)
   const [resourcesMenu, setResourcesMenu] = useState(false)
 
   const [isVisible, setIsVisible] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
+
+  const { locale, locales, asPath, reload } = useRouter()
+
+  const lang = locales?.filter((item) => item !== locale)
+
+  const alertText = useLocaleText(
+    "این یک لینک خارجی است",
+    "This is an external Link"
+  )
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,19 +74,53 @@ const TopNav: React.FC<Props> = ({ setIsMenuOpen ,onOpen }) => {
           />
         </Link>
         <div className="self-stretch hidden lg:flex gap-7 ">
-          <RouteLink title="Use Case" setMenu={setUseCaseMenu} />
-          <RouteLink title="Platform" setMenu={setPlatformMenu} />
-          <RouteLink title="Resources" setMenu={setResourcesMenu} />
+          <RouteLink
+            title={useLocaleText("موارد استفاده", "Use Case")}
+            setMenu={setUseCaseMenu}
+          />
+          <RouteLink
+            title={useLocaleText("پلتفرم", "Platform")}
+            setMenu={setPlatformMenu}
+          />
+          <RouteLink
+            title={useLocaleText("منابع", "Resources")}
+            setMenu={setResourcesMenu}
+          />
           <Link href={"/pricing"} className="flex items-center justify-center">
-            Pricing
+            {useLocaleText("تعرفه ها", "Pricing")}
           </Link>
           <div className="self-center px-4 py-2 text-white transition-all rounded-full cursor-pointer bg-mainBlue hover:text-yellow">
-            Get Started Free
+            {useLocaleText("رایگان شروع کنید", "Get Started Free")}
           </div>
         </div>
         <div className="flex items-center justify-between gap-4">
-          <p className="hidden cursor-pointer lg:flex" onClick={()=>ExternalLink()}>Sign In</p>
+          <p
+            className="hidden cursor-pointer lg:flex"
+            onClick={() => ExternalLink(alertText)}
+          >
+            {useLocaleText("ورود", "Sign In")}
+          </p>
           <Search size={20} onClick={onOpen} />
+          <div className="flex cursor-pointer">
+            {lang &&
+              lang.map((item) => {
+                return (
+                  <Link
+                    href={asPath}
+                    locale={item}
+                    onClick={() => {
+                      setTimeout(() => {
+                        reload()
+                      }, 50)
+                    }}
+                    key={item}
+                    className="flex items-center self-center justify-center w-8 h-8 text-white transition-all rounded-full cursor-pointer bg-mainBlue hover:text-yellow"
+                  >
+                    {item.toUpperCase()}
+                  </Link>
+                )
+              })}
+          </div>
           <Menu
             size={20}
             className="lg:hidden"

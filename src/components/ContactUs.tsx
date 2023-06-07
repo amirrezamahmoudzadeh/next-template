@@ -1,5 +1,8 @@
 /* eslint-disable tailwindcss/classnames-order */
+
 import React from "react"
+
+import { useLocaleText } from "@/hooks/useLocaleText"
 
 const ContactUs = () => {
   return (
@@ -11,12 +14,15 @@ const ContactUs = () => {
       }}
     >
       <p className="leading-[1] max-w-[400px] text-xl font-medium">
-        Join thousands of product managers, developers and web agencies already
-        getting news and info.
+        {useLocaleText(
+          "به هزاران مدیر محصول، توسعه‌دهندگان و آژانس‌های وب بپیوندید که از قبل اخبار و اطلاعات دریافت می‌کنند.",
+          `Join thousands of product managers, developers and web agencies already
+        getting news and info.`
+        )}
       </p>
       <form className="flex flex-col self-stretch">
         <label htmlFor="mail" className="mb-1 text-sm">
-          Email<span className="text-red">*</span>
+          {useLocaleText("ایمیل","Email")}<span className="text-red">*</span>
         </label>
         <input
           type="email"
@@ -26,7 +32,7 @@ const ContactUs = () => {
           required
         />
         <p className="self-start px-5 py-2 mt-6 text-sm text-white rounded-xl bg-mainBlue">
-          Submit
+          {useLocaleText("ثبت","Submit")}
         </p>
       </form>
     </div>
