@@ -1,7 +1,9 @@
-import { setLocaleText } from "@/functions/setLocaleText"
-import { bugTrackingData } from "@/servises/apis"
-import { useQuery } from "@tanstack/react-query"
+import { useState } from "react"
 import { useRouter } from "next/router"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { bugTrackingData } from "@/services/apis"
+import { BugTrackingApiResponse } from "@/services/types/useCase/bug-tracking"
+import { useQuery } from "@tanstack/react-query"
 
 import ContactUs from "@/components/ContactUs"
 import Loading from "@/components/Loading"
@@ -11,29 +13,48 @@ import QuoteSlider from "@/components/QuoteSlider"
 import BugTrackingItems from "./BugTrackingItems"
 
 const Index = () => {
-  const { data } = useQuery(["bug-tracking"], bugTrackingData)
+  const [data, setData] = useState<BugTrackingApiResponse["bug_tracking"]>()
+  const dataQuery = useQuery(["bug-tracking"], bugTrackingData, {
+    onSuccess(data) {
+      setData(data.bug_tracking)
+    },
+  })
   const { locale } = useRouter()
-  console.log(data?.bug_tracking)
   return (
     <>
-      {!data && <Loading />}
+      {(!data)  && <Loading />}
       {data && (
         <div className="container">
           <PagesHeader
             buttonText={setLocaleText(
-              data.bug_tracking.section1.button1_fa,
-              data.bug_tracking.section1.button1_en,
+              data.section1.button1_fa,
+              data.section1.button1_en,
               locale as string
             )}
             h1={setLocaleText(
-              data.bug_tracking.section1.title1_fa,
-              data.bug_tracking.section1.title1_en,
+              data.section1.title1_fa,
+              data.section1.title1_en,
               locale as string
             )}
-            h2="Replicate and resolve issues faster with contextual and visual bug reports"
-            text="StreaLet people report bugs in-app and give developers the session, system and user details they need to get things fixed faster."
+            h2={setLocaleText(
+              data.section1.title2_fa,
+              data.section1.title2_en,
+              locale as string
+            )}
+            text={setLocaleText(
+              data.section1.text1_fa,
+              data.section1.text1_en,
+              locale as string
+            )}
           />
-          <BugTrackingItems />
+          <BugTrackingItems
+            section2={data.section2}
+            section3={data.section3}
+            section4={data.section4}
+            section5={data.section5}
+            section6={data.section6}
+            locale={locale as string}
+          />
           <QuoteSlider />
           <ContactUs />
         </div>

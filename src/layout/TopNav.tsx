@@ -1,19 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable tailwindcss/classnames-order */
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { ExternalLink } from "@/functions/ExternalLinks"
-import { motion } from "framer-motion"
-import { Menu, Search } from "lucide-react"
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { ExternalLink } from "@/functions/ExternalLinks";
+import { motion } from "framer-motion";
+import { Menu, Search } from "lucide-react";
 
-import { useLocaleText } from "@/hooks/useLocaleText"
-import RouteLink from "@/components/topnav/RouteLink"
 
-import PlatformMenu from "./PlatformMenu"
-import ResourcesMenu from "./ResourcesMenu"
-import UsecaseMenu from "./UsecaseMenu"
+
+import { useLocaleText } from "@/hooks/useLocaleText";
+import RouteLink from "@/components/topnav/RouteLink";
+
+
+
+import PlatformMenu from "./PlatformMenu";
+import ResourcesMenu from "./ResourcesMenu";
+import UsecaseMenu from "./UsecaseMenu";
+import Loading from "@/components/Loading";
+
 
 interface Props {
   setIsMenuOpen: (val: boolean) => void
@@ -27,6 +33,9 @@ const TopNav: React.FC<Props> = ({ setIsMenuOpen, onOpen }) => {
 
   const [isVisible, setIsVisible] = useState(true)
   const [prevScrollPos, setPrevScrollPos] = useState(0)
+
+  const [refreshLoading, setRefreshLoading] = useState(false)
+
 
   const { locale, locales, asPath, reload } = useRouter()
 
@@ -60,6 +69,7 @@ const TopNav: React.FC<Props> = ({ setIsMenuOpen, onOpen }) => {
       transition={{ delay: 0.2, bounce: 0 }}
       animate={{ y: !isVisible ? -100 : 0 }}
     >
+      {refreshLoading && <Loading />}
       <div className="container relative flex items-center justify-between flex-1">
         <Link href={"/"} className="py-[25px]">
           <img
@@ -109,6 +119,7 @@ const TopNav: React.FC<Props> = ({ setIsMenuOpen, onOpen }) => {
                     href={asPath}
                     locale={item}
                     onClick={() => {
+                      setRefreshLoading(true)
                       setTimeout(() => {
                         reload()
                       }, 50)

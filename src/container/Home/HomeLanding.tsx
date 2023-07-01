@@ -4,8 +4,9 @@ import React from "react"
 
 import ButtonComponent from "@/components/ButtonComponent"
 import { useLocaleText } from "@/hooks/useLocaleText"
+import { HomeApiResponse } from "@/services/types/useCase/home"
 
-const HomeLanding:React.FC<{data : any}> = ({data}) => {
+const HomeLanding:React.FC<{data : HomeApiResponse["home"]["section1"]}> = ({data}) => {
   return (
     <div
       style={{ background: "linear-gradient(45deg,#6042ec 0%,#ff4060 100%)" }}
