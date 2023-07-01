@@ -1,5 +1,8 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { homeData } from "@/servises/apis"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import QuoteComponent from "@/components/QuoteComponent"
 import ShowCase from "@/components/ShowCase"
@@ -9,9 +12,13 @@ import HomeItems from "./HomeItems"
 import HomeLanding from "./HomeLanding"
 
 const Index = () => {
+  const data = useQuery(["home-data"], homeData)
+  console.log(data.data?.home.section1.button1_en)
+  
+
   return (
     <>
-      <HomeLanding />
+      {data.data &&<HomeLanding data={data.data?.home.section1} />}
       <div className="container">
         <ShowCase />
         <HomeItems />

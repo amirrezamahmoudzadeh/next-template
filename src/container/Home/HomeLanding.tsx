@@ -3,13 +3,14 @@
 import React from "react"
 
 import ButtonComponent from "@/components/ButtonComponent"
+import { useLocaleText } from "@/hooks/useLocaleText"
 
-const HomeLanding = () => {
+const HomeLanding:React.FC<{data : any}> = ({data}) => {
   return (
     <div
       style={{ background: "linear-gradient(45deg,#6042ec 0%,#ff4060 100%)" }}
     >
-      <div className="container flex flex-col text-white lg:pl-[15%] py-[100px] px-[10%] lg:pr-0">
+      <div className="container flex flex-col text-white lg:pl-[15%] py-[100px] px-[10%] lg:pr-8">
         <div>
           <img
             src="/images/home-landing.webp"
@@ -37,7 +38,7 @@ const HomeLanding = () => {
             <p className="text-sm">No credit card required</p>
           </div>
           <ButtonComponent
-            text="Try the hands-on demo"
+            text={useLocaleText(data.button1_fa,data.button1_en)}
             style={{ backgroundColor: "transparent" }}
             className="hidden mt-[10px] border-2 md:block"
           />
