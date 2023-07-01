@@ -26,9 +26,9 @@ const TextCol: React.FC<Props> = ({
       <div className="flex flex-col gap-3 text-gray-700">{children}</div>
       {items && (
         <ul className="flex flex-col gap-1.5 text-gray-600">
-          {items?.map((item) => {
+          {items?.map((item , index) => {
             return (
-              <li className="flex items-center gap-4">
+              <li className="flex items-center gap-4" key={index}>
                 <Check size={16} color={color ? color : "#6042ec"} />
                 <p>{item}</p>
               </li>
