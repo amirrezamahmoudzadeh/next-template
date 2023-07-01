@@ -3,8 +3,12 @@ import PagesHeader from "@/components/PagesHeader"
 
 import BugTrackingItems from "./BugTrackingItems"
 import QuoteSlider from "@/components/QuoteSlider"
+import { useQuery } from "@tanstack/react-query"
+import { bugTrackingData } from "@/servises/apis"
 
-const index = () => {
+const Index = () => {
+  const data = useQuery(['bug-tracking'] , bugTrackingData)
+  console.log(data)
   return (
     <div className="container">
       <PagesHeader
@@ -20,4 +24,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index

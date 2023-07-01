@@ -13,7 +13,6 @@ import HomeLanding from "./HomeLanding"
 
 const Index = () => {
   const data = useQuery(["home-data"], homeData)
-  console.log(data.data?.home.section1.button1_en)
   
 
   return (
