@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from "axios";
 import { BugTrackingApiResponse } from './types/useCase/bug-tracking';
 import { HomeApiResponse } from "./types/useCase/home";
 import { UserAcceptanceApiResponse } from "./types/useCase/user_acceptance_testing";
+import { WebsiteFeedbackToolApiRespone } from "@/services/types/useCase/website_feedback_tool";
 
 
 const instance: AxiosInstance = axios.create({
@@ -21,6 +22,13 @@ export const userAcceptanceTestingData =
   async (): Promise<UserAcceptanceApiResponse> => {
     const response = await instance.get(
       `pages/get?page=user_acceptance_testing`
+    )
+    return response.data
+  }
+export const feedbackToolData =
+  async (): Promise<WebsiteFeedbackToolApiRespone> => {
+    const response = await instance.get(
+      `pages/get?page=website_feedback_tool`
     )
     return response.data
   }
