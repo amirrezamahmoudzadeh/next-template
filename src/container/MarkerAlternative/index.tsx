@@ -19,7 +19,7 @@ const index = () => {
         name="Clark McCauley"
         text="Userback is so much faster. We were literally up and running in under 5 minutes and that included integrating with our ClickUp ticketing system"
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }

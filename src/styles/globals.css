@@ -177,7 +177,7 @@ html {
 }
 
 .swiper-slide .quote-wrapper {
-  @apply flex items-start gap-4 p-20 pl-5 text-gray-400 transition-all bg-transparent rounded-xl;
+  @apply flex items-start gap-4 p-16 pl-5 text-gray-400 transition-all bg-transparent rounded-xl;
   animation-delay: 50ms;
 }
 
@@ -192,23 +192,21 @@ html {
   @apply !opacity-100;
 }
 
-
-
 /* for pages contains text */
 
 .wpb_wrapper h2 {
-  @apply text-[25px] lg:text-[35px] translate-y-6 font-medium
+  @apply text-[25px] lg:text-[35px] translate-y-6 font-medium;
 }
 .wpb_wrapper ul {
-  @apply flex flex-col gap-2 !list-disc pl-6
+  @apply flex flex-col gap-2 !list-disc pl-6;
 }
 .wpb_wrapper a {
-  @apply text-mainBlue
+  @apply text-mainBlue;
 }
 
-.wpb_wrapper section > div{
-  @apply flex flex-col gap-6
+.wpb_wrapper section > div {
+  @apply flex flex-col gap-6;
 }
-.wpb_wrapper{
-  @apply flex flex-col gap-6
+.wpb_wrapper {
+  @apply flex flex-col gap-6;
 }

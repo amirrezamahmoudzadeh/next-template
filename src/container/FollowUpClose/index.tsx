@@ -1,5 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable tailwindcss/classnames-order */
+
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { FollowUpCloseApiResponse } from "@/services/types/platform/follow_up_close"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
 import PagesHeader from "@/components/PagesHeader"
@@ -7,7 +13,18 @@ import QuoteComponent from "@/components/QuoteComponent"
 
 import FollowUpCloseItems from "./FollowUpCloseItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<FollowUpCloseApiResponse["follow_up_and_close"]>()
+  const dataQuery = useQuery<FollowUpCloseApiResponse>(
+    ["follow_up_and_close"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.follow_up_and_close)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -40,9 +57,9 @@ const index = () => {
         text="EGA Futura Software is in love with Userback. It's easy to use, and very intuitive for our support representatives and our end users."
         color="#ffc040"
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

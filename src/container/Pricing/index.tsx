@@ -13,7 +13,7 @@ const index = () => {
         text=""
       />
       <PricingItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }

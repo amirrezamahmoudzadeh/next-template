@@ -1,14 +1,29 @@
 /* eslint-disable tailwindcss/classnames-order */
+
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { SessionReplayApiResponse } from "@/services/types/platform/session_replay"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
 import PagesHeader from "@/components/PagesHeader"
-import QuoteComponent from "@/components/QuoteComponent"
 import SingleVideo from "@/components/SingleVideo"
-import VideosTabs from "@/components/VideosTabs"
 
 import SessionReplayItems from "./SessionReplayItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] = useState<SessionReplayApiResponse["session_replay"]>()
+  const dataQuery = useQuery<SessionReplayApiResponse>(
+    ["session_replay"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.session_replay)
+      },
+    }
+  )
+
   return (
     <div className="container">
       <PagesHeader
@@ -33,9 +48,9 @@ const index = () => {
       </div>
       <SingleVideo />
       <SessionReplayItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

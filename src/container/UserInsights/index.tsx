@@ -1,10 +1,25 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { UserInsightsApiResponse } from "@/services/types/platform/user_insights"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
 import QuoteComponent from "@/components/QuoteComponent"
 
 import UserInsightsItems from "./UserInsightsItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] = useState<UserInsightsApiResponse["user_insights"]>()
+  const dataQuery = useQuery<UserInsightsApiResponse>(
+    ["user_insights"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.user_insights)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -19,9 +34,9 @@ const index = () => {
         name="Dashbite T."
         text="Userback is the perfect way to collect and control our user feedback for our website projects and keep it in one location. it also allows you to provide customer support at a high-end level."
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

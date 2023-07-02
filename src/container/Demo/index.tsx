@@ -1,10 +1,25 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { HandsOnDemoApiResponse } from "@/services/types/platform/hands_on_demo"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
 import QuoteComponent from "@/components/QuoteComponent"
 import ShowCase from "@/components/ShowCase"
 import TitleAndButton from "@/components/TitleAndButton"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] = useState<HandsOnDemoApiResponse["hands_on_demo"]>()
+  const dataQuery = useQuery<HandsOnDemoApiResponse>(
+    ["hands_on_demo"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.hands_on_demo)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -27,9 +42,9 @@ const index = () => {
         mobileSize={24.5}
         text="Bring Product Managers and Devs into alignment. No guesswork required"
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

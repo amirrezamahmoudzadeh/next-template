@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
 import { setLocaleText } from "@/functions/setLocaleText"
-import { feedbackToolData } from "@/services/apis"
+import { getData } from "@/services/apis"
 import { WebsiteFeedbackToolApiRespone } from "@/services/types/useCase/website_feedback_tool"
 import { useQuery } from "@tanstack/react-query"
 
@@ -16,11 +16,15 @@ const Index = () => {
   const [data, setData] =
     useState<WebsiteFeedbackToolApiRespone["website_feedback_tool"]>()
 
-  const dataQuery = useQuery(["feedback-tool"], feedbackToolData, {
-    onSuccess(data) {
-      setData(data.website_feedback_tool)
-    },
-  })
+  const dataQuery = useQuery<WebsiteFeedbackToolApiRespone>(
+    ["website_feedback_tool"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.website_feedback_tool)
+      },
+    }
+  )
 
   const { locale } = useRouter()
   return (
@@ -61,7 +65,7 @@ const Index = () => {
             name="Gustavo M."
             text="We love how Userback helps our team to be on top of their game regarding client feedback and team communication. We love how easy it is to use and the range of integrations it has available."
           />
-          <ContactUs />
+          <ContactUs section={data?.section7} />
         </div>
       )}
     </>

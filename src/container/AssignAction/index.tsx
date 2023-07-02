@@ -1,11 +1,28 @@
 /* eslint-disable tailwindcss/classnames-order */
+
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { AssignActionApiResponse } from "@/services/types/platform/assign_action"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
 import PagesHeader from "@/components/PagesHeader"
 
 import AssignActionItems from "./AssignActionItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<AssignActionApiResponse["assign_and_action"]>()
+  const dataQuery = useQuery<AssignActionApiResponse>(
+    ["assign_and_action"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.assign_and_action)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -33,9 +50,9 @@ const index = () => {
         <img src="/images/userback_Action.png" alt="" />
       </div>
       <AssignActionItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

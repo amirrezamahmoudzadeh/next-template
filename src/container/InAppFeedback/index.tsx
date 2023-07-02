@@ -1,4 +1,12 @@
 /* eslint-disable tailwindcss/classnames-order */
+
+import { useState } from "react"
+import BlogCard from "@/container/Blog/BlogCard"
+import { BlogData } from "@/container/Blog/BlogData"
+import { getData } from "@/services/apis"
+import { InAppFeedbackApiResponse } from "@/services/types/platform/in_app_feedback"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
 import PagesHeader from "@/components/PagesHeader"
@@ -6,10 +14,19 @@ import QuoteComponent from "@/components/QuoteComponent"
 import VideosTabs from "@/components/VideosTabs"
 
 import InAppFeedbackItems from "./InAppFeedbackItems"
-import BlogCard from "@/container/Blog/BlogCard"
-import { BlogData } from "@/container/Blog/BlogData"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<InAppFeedbackApiResponse["in_app_feedback"]>()
+  const dataQuery = useQuery<InAppFeedbackApiResponse>(
+    ["in_app_feedback"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.in_app_feedback)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -41,7 +58,7 @@ const index = () => {
       />
       <InAppFeedbackItems />
       <div className="flex flex-wrap px-[12%] justify-between gap-y-8">
-        {BlogData.slice(0,3).map((blog) => {
+        {BlogData.slice(0, 3).map((blog) => {
           return (
             <BlogCard
               image={blog.image}
@@ -54,9 +71,9 @@ const index = () => {
           )
         })}
       </div>
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

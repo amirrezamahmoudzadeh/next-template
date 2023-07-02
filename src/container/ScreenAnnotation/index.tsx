@@ -1,11 +1,26 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { ScreenAnnotationApiResponse } from "@/services/types/platform/screen_annotation"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
-import QuoteComponent from "@/components/QuoteComponent"
 import VideosTabs from "@/components/VideosTabs"
 
 import ScreenAnnotationItems from "./ScreenAnnotationItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<ScreenAnnotationApiResponse["screen_annotation"]>()
+  const dataQuery = useQuery<ScreenAnnotationApiResponse>(
+    ["screen_annotation"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.screen_annotation)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -16,9 +31,9 @@ const index = () => {
       />
       <VideosTabs type={1} />
       <ScreenAnnotationItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

@@ -1,3 +1,8 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { FeedbackPortalApiResponse } from "@/services/types/platform/feedback_portal"
+import { useQuery } from "@tanstack/react-query"
+
 import { useLocaleText } from "@/hooks/useLocaleText"
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
@@ -5,6 +10,17 @@ import PagesHeader from "@/components/PagesHeader"
 import FeedbackPortalItems from "./FeedbackPortalItems"
 
 const Index = () => {
+  const [data, setData] =
+    useState<FeedbackPortalApiResponse["feedback_portal"]>()
+  const dataQuery = useQuery<FeedbackPortalApiResponse>(
+    ["feedback_portal"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.feedback_portal)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -23,7 +39,7 @@ const Index = () => {
         )}
       />
       <FeedbackPortalItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }

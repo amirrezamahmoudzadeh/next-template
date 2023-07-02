@@ -1,9 +1,9 @@
-import { useState } from "react"
-import { useRouter } from "next/router"
 import { setLocaleText } from "@/functions/setLocaleText"
-import { bugTrackingData } from "@/services/apis"
+import { getData } from "@/services/apis"
 import { BugTrackingApiResponse } from "@/services/types/useCase/bug-tracking"
 import { useQuery } from "@tanstack/react-query"
+import { useRouter } from "next/router"
+import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
 import Loading from "@/components/Loading"
@@ -14,15 +14,19 @@ import BugTrackingItems from "./BugTrackingItems"
 
 const Index = () => {
   const [data, setData] = useState<BugTrackingApiResponse["bug_tracking"]>()
-  const dataQuery = useQuery(["bug-tracking"], bugTrackingData, {
-    onSuccess(data) {
-      setData(data.bug_tracking)
-    },
-  })
+  const dataQuery = useQuery<BugTrackingApiResponse>(
+    ["bug_tracking"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.bug_tracking)
+      },
+    }
+  )
   const { locale } = useRouter()
   return (
     <>
-      {(!data)  && <Loading />}
+      {!data && <Loading />}
       {data && (
         <div className="container">
           <PagesHeader
@@ -55,8 +59,73 @@ const Index = () => {
             section6={data.section6}
             locale={locale as string}
           />
-          <QuoteSlider />
-          <ContactUs />
+          <QuoteSlider
+            texts={[
+              setLocaleText(
+                data.section7.text1_fa,
+                data.section7.text1_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.text2_fa,
+                data.section7.text2_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.text3_fa,
+                data.section7.text3_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.text4_fa,
+                data.section7.text4_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.text5_fa,
+                data.section7.text5_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.text6_fa,
+                data.section7.text6_en,
+                locale as string
+              ),
+            ]}
+            titles={[
+              setLocaleText(
+                data.section7.title1_fa,
+                data.section7.title1_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.title2_fa,
+                data.section7.title2_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.title3_fa,
+                data.section7.title3_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.title4_fa,
+                data.section7.title4_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.title5_fa,
+                data.section7.title5_en,
+                locale as string
+              ),
+              setLocaleText(
+                data.section7.title6_fa,
+                data.section7.title6_en,
+                locale as string
+              ),
+            ]}
+          />
+          <ContactUs section={data?.section8} />
         </div>
       )}
     </>

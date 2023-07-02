@@ -1,5 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable tailwindcss/classnames-order */
+
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { CaptureCollectaptureCollectApiResponse } from "@/services/types/platform/capture_collect"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
 import PagesHeader from "@/components/PagesHeader"
@@ -7,7 +13,18 @@ import QuoteComponent from "@/components/QuoteComponent"
 
 import CaptureCollectItems from "./CaptureCollectItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<CaptureCollectaptureCollectApiResponse["capture_and_collect"]>()
+  const dataQuery = useQuery<CaptureCollectaptureCollectApiResponse>(
+    ["capture_and_collect"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.capture_and_collect)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -40,9 +57,9 @@ const index = () => {
         name="G2 Review"
         text="The fact that I don't have to schedule multiple review meetings, go back and fort emails of emails and text just make sure I understand what the feed is before investing hours on changes that could be hit or miss."
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

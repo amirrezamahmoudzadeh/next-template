@@ -1,3 +1,8 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { VideoRecordingApiResponse } from "@/services/types/platform/video_recording"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
 import QuoteComponent from "@/components/QuoteComponent"
@@ -5,7 +10,18 @@ import VideosTabs from "@/components/VideosTabs"
 
 import VideoRecordingItems from "./VideoRecordingItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<VideoRecordingApiResponse["video_recording"]>()
+  const dataQuery = useQuery<VideoRecordingApiResponse>(
+    ["video_recording"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.video_recording)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -21,9 +37,9 @@ const index = () => {
         name="Ryan Soper-Powell"
         text="Video feedback is awesome! It makes it even easier for folks to communicate in their own words what they want to change."
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

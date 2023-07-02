@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/classnames-order */
 
 import { useState } from "react"
-import { homeData } from "@/services/apis"
+import { getData } from "@/services/apis"
 import { HomeApiResponse } from "@/services/types/useCase/home"
 import { useQuery } from "@tanstack/react-query"
 
@@ -16,7 +16,7 @@ import HomeLanding from "./HomeLanding"
 
 const Index = () => {
   const [data, setData] = useState<HomeApiResponse["home"]>()
-  const dataQuery = useQuery(["home-data"], homeData, {
+  const dataQuery = useQuery<HomeApiResponse>(["home"], getData, {
     onSuccess(data) {
       setData(data.home)
     },
@@ -49,7 +49,7 @@ const Index = () => {
               maxWidth={670}
               mobileSize={24}
             />
-            <ContactUs />
+            <ContactUs section={data?.section8} />
           </div>
         </>
       )}

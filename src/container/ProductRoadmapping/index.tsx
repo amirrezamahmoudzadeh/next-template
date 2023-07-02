@@ -1,9 +1,25 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { ProductRoadmappingApiResponse } from "@/services/types/useCase/product_roadmapping"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
-import QuoteComponent from "@/components/QuoteComponent"
+
 import ProductRoadmappingItems from "./ProductRoadmappingItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<ProductRoadmappingApiResponse["product_roadmapping"]>()
+  const dataQuery = useQuery<ProductRoadmappingApiResponse>(
+    ["product_roadmapping"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.product_roadmapping)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -13,9 +29,9 @@ const index = () => {
         text="Take the guesswork out of product decisions with actionable insights based on better customer understanding."
       />
       <ProductRoadmappingItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

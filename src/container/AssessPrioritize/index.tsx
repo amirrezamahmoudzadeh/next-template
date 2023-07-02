@@ -1,5 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable tailwindcss/classnames-order */
+
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { AssessPrioritizeApiResponse } from "@/services/types/platform/assess_prioritize"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
 import PagesHeader from "@/components/PagesHeader"
@@ -7,7 +13,18 @@ import QuoteComponent from "@/components/QuoteComponent"
 
 import AssessPrioritizeItems from "./AssessPrioritizeItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<AssessPrioritizeApiResponse["assess_and_prioritize"]>()
+  const dataQuery = useQuery<AssessPrioritizeApiResponse>(
+    ["assess_and_prioritize"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.assess_and_prioritize)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -39,9 +56,9 @@ const index = () => {
         text="I recently started a new position and needed to re-invigorate user feedback. After some research, I selected Userback, because it integrated well with everything I needed."
         color="#ff4060"
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

@@ -19,7 +19,7 @@ const index = () => {
         name="Jeff Mackler"
         text="We moved to Userback from another tool Usersnap that we used for a few years. Userback is less expensive, has a better UI and UX, has better features, and more than anything actually responds to customer requests."
       />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }

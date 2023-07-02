@@ -1,8 +1,25 @@
+import { useState } from "react"
+import { getData } from "@/services/apis"
+import { ForDevelopersApiResponse } from "@/services/types/useCase/userback_for_developers"
+import { useQuery } from "@tanstack/react-query"
+
 import ContactUs from "@/components/ContactUs"
 import PagesHeader from "@/components/PagesHeader"
+
 import ForDevelopersItems from "./ForDevelopersItems"
 
-const index = () => {
+const Index = () => {
+  const [data, setData] =
+    useState<ForDevelopersApiResponse["userback_for_developers"]>()
+  const dataQuery = useQuery<ForDevelopersApiResponse>(
+    ["userback_for_developers"],
+    getData,
+    {
+      onSuccess(data) {
+        setData(data.userback_for_developers)
+      },
+    }
+  )
   return (
     <div className="container">
       <PagesHeader
@@ -12,9 +29,9 @@ const index = () => {
         text="Automatically get the user and system information you need to instantly understand issues and fix them faster."
       />
       <ForDevelopersItems />
-      <ContactUs />
+      <ContactUs section={data?.section7} />
     </div>
   )
 }
 
-export default index
+export default Index

@@ -1,14 +1,14 @@
 /* eslint-disable tailwindcss/classnames-order */
-import React from "react"
 import { motion } from "framer-motion"
+// import Swiper and modules styles
+import { ArrowLeft, ArrowRight, Quote } from "lucide-react"
+import { Navigation, Pagination } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
 
-// import Swiper and modules styles
+import { FC } from "react"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import { ArrowLeft, ArrowRight, Quote } from "lucide-react"
-import { Navigation, Pagination } from "swiper"
 
 const Slides = [
   {
@@ -60,7 +60,12 @@ const Slides = [
   },
 ]
 
-const QuoteSlider = () => {
+interface Props {
+  titles: string[]
+  texts: string[]
+}
+
+const QuoteSlider: FC<Props> = ({ texts, titles }) => {
   return (
     <Swiper
       slidesPerView={1}
@@ -77,9 +82,9 @@ const QuoteSlider = () => {
         },
       }}
     >
-      {Slides.map((slide) => {
+      {titles.map((title, index) => {
         return (
-          <SwiperSlide key={slide.id}>
+          <SwiperSlide key={index}>
             <div className="flex flex-col items-center gap-8">
               <div className={`quote-wrapper`}>
                 <div className="opacity-40">
@@ -88,11 +93,11 @@ const QuoteSlider = () => {
                     color="rgba(156 ,163 ,175)"
                   />
                 </div>
-                <p className="text-[1.25rem]">{slide.title}</p>
+                <p className="text-[1.25rem]">{title}</p>
               </div>
               <div className="flex flex-col items-center">
-                <p className="text-xs">{slide.name}</p>
-                <p className="text-sm text-gray-500">{slide.position}</p>
+                <p className="text-xs">{texts[index].split(" ")[0] + " " + texts[index].split(" ")[1]}</p>
+                <p className="text-sm text-gray-500">{texts[index].split(" ").slice(2).join(" ")}</p>
               </div>
             </div>
           </SwiperSlide>
