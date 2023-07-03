@@ -1,47 +1,90 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { FC } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { AssessPrioritizeApiResponse } from "@/services/types/platform/assess_prioritize"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section4: AssessPrioritizeApiResponse["assess_and_prioritize"]["section4"]
+  section5: AssessPrioritizeApiResponse["assess_and_prioritize"]["section5"]
+  section6: AssessPrioritizeApiResponse["assess_and_prioritize"]["section6"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({ locale, section4, section5, section6 }) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/Userback_Assess_2.png">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="See through their eyes"
-          button="Learn more about Video Recording"
+          header={setLocaleText(
+            section4.title1_fa,
+            section4.title1_en,
+            locale as string
+          )}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale as string
+          )}
           color="#ff4060"
         >
           <p className="font-bold">
-            Get real-time contextual and visual clarity with annotated
-            screenshots, video capture and session replays.
+            {setLocaleText(
+              section4.title2_fa,
+              section4.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Quickly understand what users mean and where issues are. See
-            feedback through their eyes and with all the necessary visual and
-            technical context automatically attached.
+            {setLocaleText(
+              section4.text1_fa,
+              section4.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/assessing-feedback_1.png">
-        <TextCol header="Collect more consistent feedback">
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(
+            section5.title1_fa,
+            section5.title1_en,
+            locale as string
+          )}
+        >
           <p>
-            Use a single platform to collect multiple feedback types in the most
-            consistent format possible. Categorize inbound visual feedback based
-            on your preferred tags and prioritize action with ease.
+            {setLocaleText(
+              section5.text1_fa,
+              section5.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Userback_Assess_4.png">
-        <TextCol header="Know what’s important">
+      <RowComponent imgUrl={section6.image1}>
+        <TextCol
+          header={setLocaleText(
+            section6.title1_fa,
+            section6.title1_en,
+            locale as string
+          )}
+        >
           <p className="font-bold">
-            Get a more accurate representation of what your actual user base
-            needs.
+            {setLocaleText(
+              section6.title2_fa,
+              section6.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Let your users provide input and ideas into your product, and show
-            their priorities through upvoting. Collect it all in a dedicated
-            portal where you can build loyalty and community at the same time.
+            {setLocaleText(
+              section6.text1_fa,
+              section6.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>

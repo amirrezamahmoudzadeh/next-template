@@ -1,9 +1,9 @@
+import { useState } from "react"
+import { useRouter } from "next/router"
 import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { BugTrackingApiResponse } from "@/services/types/useCase/bug-tracking"
 import { useQuery } from "@tanstack/react-query"
-import { useRouter } from "next/router"
-import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
 import Loading from "@/components/Loading"

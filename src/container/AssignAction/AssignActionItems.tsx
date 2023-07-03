@@ -1,58 +1,111 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { AssignActionApiResponse } from "@/services/types/platform/assign_action"
+import { FC } from "react"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section4: AssignActionApiResponse["assign_and_action"]["section4"]
+  section5: AssignActionApiResponse["assign_and_action"]["section5"]
+  section6: AssignActionApiResponse["assign_and_action"]["section6"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({ locale, section4, section5, section6 }) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/userback_action_1.webp">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="Stop hunting, start fixing"
-          button="Learn more about Session Replay"
+          header={setLocaleText(
+            section4.title1_fa,
+            section4.title1_en,
+            locale as string
+          )}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale as string
+          )}
           color="#ff8040"
         >
           <p className="font-bold">
-            No more wasting time trying to reproduce or diagnose the root cause
-            of issues with no context.
+            {setLocaleText(
+              section4.title2_fa,
+              section4.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Visual context means you can see exactly what users mean and where
-            an issue occurred, including the user’s steps to get there through
-            events and console logs. You no longer have to ask for rudimentary
-            technical details such as browser version or device type, and it’s
-            all there automatically so you can hit the ground running.
+            {setLocaleText(
+              section4.text1_fa,
+              section4.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/assigning-feedback_1.webp">
+      <RowComponent imgUrl={section5.image1}>
         <TextCol
-          header="Automated for more productive sprints"
+          header={setLocaleText(
+            section5.title1_fa,
+            section5.title1_en,
+            locale as string
+          )}
           items={[
-            "Session Information",
-            "User Data",
-            "Console Logs",
-            "Event Tracking",
+            setLocaleText(
+              section5.text2_fa,
+              section5.text2_en,
+              locale as string
+            ),
+            setLocaleText(
+              section5.text3_fa,
+              section5.text3_en,
+              locale as string
+            ),
+            setLocaleText(
+              section5.text4_fa,
+              section5.text4_en,
+              locale as string
+            ),
+            setLocaleText(
+              section5.text5_fa,
+              section5.text5_en,
+              locale as string
+            ),
           ]}
           color="#ff8040"
         >
           <p className="font-bold">
-            Reduce the effort of estimations and speed time to resolution.
+            {setLocaleText(
+              section5.title2_fa,
+              section5.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Userback removes any ambiguity and subjectivity from bug reports by
-            automatically capturing contextual information in the background:
+            {setLocaleText(
+              section5.text1_fa,
+              section5.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/userback_action_3.webp">
-        <TextCol header="Deliver feedback into your workflows ">
+      <RowComponent imgUrl={section6.image1}>
+        <TextCol header= {setLocaleText(
+              section6.title1_fa,
+              section6.title1_en,
+              locale as string
+            )}>
           <p>
-            Push user feedback directly into the places where your teams work
-            and eliminate cumbersome silos of information. Automate with
-            Userback and deliver alerts to Slack or bug fixes directly to the
-            tools your developers use, like GitHub, GitLab and Jira and speed
-            response times.
+            {setLocaleText(
+              section6.text1_fa,
+              section6.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>

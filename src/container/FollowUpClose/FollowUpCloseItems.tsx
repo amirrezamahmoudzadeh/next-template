@@ -1,48 +1,95 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { FC } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { FollowUpCloseApiResponse } from "@/services/types/platform/follow_up_close"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FollowUpCloseItems = () => {
+interface Props {
+  section4: FollowUpCloseApiResponse["follow_up_and_close"]["section4"]
+  section5: FollowUpCloseApiResponse["follow_up_and_close"]["section5"]
+  locale: string
+}
+
+const FollowUpCloseItems: FC<Props> = ({ locale, section4, section5 }) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/Userback_Closure_1.png">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="Test and validate"
+          header={setLocaleText(
+            section4.title1_fa,
+            section4.title1_en,
+            locale as string
+          )}
           color="#ffc040"
           items={[
-            "Upvote on existing submissions",
-            "Add commentary to submissions",
-            "Track status updates",
-            "Provide total clarity to build trust",
+            setLocaleText(
+              section4.text2_fa,
+              section4.text2_en,
+              locale as string
+            ),
+            setLocaleText(
+              section4.text3_fa,
+              section4.text3_en,
+              locale as string
+            ),
+            setLocaleText(
+              section4.text4_fa,
+              section4.text4_en,
+              locale as string
+            ),
+            setLocaleText(
+              section4.text5_fa,
+              section4.text5_en,
+              locale as string
+            ),
           ]}
         >
           <p className="font-bold">
-            Streamlined feedback channels mean quick testing and validation of
-            fixes and feature builds.
+            {setLocaleText(
+              section4.title2_fa,
+              section4.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Whether it’s internal validation by testing and design teams, or
-            external customer validation that a fix or feature hits the mark,
-            having a frictionless feedback channel means this can happen rapidly
-            to support product momentum and customer success.
+            {setLocaleText(
+              section4.text1_fa,
+              section4.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Userback_Closure_2.png">
+      <RowComponent imgUrl={section5.image1}>
         <TextCol
-          header="Share the status"
-          button="Learn more about Feedback Portal"
+          header={setLocaleText(
+            section5.title1_fa,
+            section5.title1_en,
+            locale as string
+          )}
+          button={setLocaleText(
+            section5.button1_fa,
+            section5.button1_en,
+            locale as string
+          )}
           color="#ffc040"
         >
           <p className="font-bold">
-            Don’t leave users hanging waiting for an update on their feedback or
-            feature request.
+            {setLocaleText(
+              section5.title2_fa,
+              section5.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Automatically notify users of progress and resolution through the
-            tools you already use daily. One less step for you, one more
-            communication for your users.
+            {setLocaleText(
+              section5.text1_fa,
+              section5.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
