@@ -1,6 +1,8 @@
 /* eslint-disable tailwindcss/classnames-order */
 
 import { useState } from "react"
+import { useRouter } from "next/router"
+import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { HomeApiResponse } from "@/services/types/useCase/home"
 import { useQuery } from "@tanstack/react-query"
@@ -22,6 +24,8 @@ const Index = () => {
     },
   })
 
+  const { locale } = useRouter()
+
   return (
     <>
       {!data && <Loading />}
@@ -29,7 +33,7 @@ const Index = () => {
         <>
           <HomeLanding data={data.section1} />
           <div className="container">
-            <ShowCase />
+            <ShowCase locale={locale as string} section={data.section2} />
             <HomeItems />
             <QuoteComponent
               job="President + Founder"
@@ -40,11 +44,17 @@ const Index = () => {
             systems. The reliability has been great as well."
             />
             <TitleAndButton
-              buttonText="Start your risk free trial - no credit card required"
+              buttonText={setLocaleText(
+                data.section7.button1_fa,
+                data.section7.button1_en,
+                locale as string
+              )}
               className="mb-10"
-              text={
-                "Bring Product Managers and Developers into alignment. No guesswork required."
-              }
+              text={setLocaleText(
+                data.section7.text1_fa,
+                data.section7.text1_en,
+                locale as string
+              )}
               desktopSize={35}
               maxWidth={670}
               mobileSize={24}

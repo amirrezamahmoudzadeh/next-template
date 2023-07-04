@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { ForProductManagersApiResponse } from "@/services/types/useCase/userback_for_product_managers"
 import { useQuery } from "@tanstack/react-query"
+import { useRouter } from "next/router"
+import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
+import Loading from "@/components/Loading"
 import PagesHeader from "@/components/PagesHeader"
 import QuoteComponent from "@/components/QuoteComponent"
 
@@ -21,22 +24,53 @@ const Index = () => {
       },
     }
   )
+  const { locale } = useRouter()
   return (
-    <div className="container">
-      <PagesHeader
-        buttonText="Make product management simpler - Start your free trial today"
-        h1="Userback for Product Managers"
-        h2="Keep users at the center of UX design and feature builds"
-        text="Stay connected to what users really need so you can build products and features that they really love"
-      />
-      <ForProductItems />
-      <QuoteComponent
-        job="Product Manager"
-        name="Lora K."
-        text={`It is really easy to set the Userback widget on your product, customize how it looks, and link it with whatever other tool you like. It is also extremely straightforward from the end user's perspective - even non tech-savvy users take advantage of it to report issues or make suggestions for our platform.`}
-      />
-      <ContactUs section={data?.section7} />
-    </div>
+    <>
+      {!data && <Loading />}
+      {data && (
+        <div className="container">
+          <PagesHeader
+            buttonText={setLocaleText(
+              data.section1.button1_fa,
+              data.section1.button1_en,
+              locale as string
+            )}
+            h1={setLocaleText(
+              data.section1.title1_fa,
+              data.section1.title1_en,
+              locale as string
+            )}
+            h2={setLocaleText(
+              data.section1.title2_fa,
+              data.section1.title2_en,
+              locale as string
+            )}
+            text={setLocaleText(
+              data.section1.text1_fa,
+              data.section1.text1_en,
+              locale as string
+            )}
+          />
+          <ForProductItems
+            locale={locale as string}
+            section2={data.section2}
+            section3={data.section3}
+            section4={data.section4}
+            section5={data.section5}
+            section6={data.section6}
+            section7={data.section7}
+            section8={data.section8}
+          />
+          <QuoteComponent
+            job="Product Manager"
+            name="Lora K."
+            text={`It is really easy to set the Userback widget on your product, customize how it looks, and link it with whatever other tool you like. It is also extremely straightforward from the end user's perspective - even non tech-savvy users take advantage of it to report issues or make suggestions for our platform.`}
+          />
+          <ContactUs section={data?.section9} />
+        </div>
+      )}
+    </>
   )
 }
 

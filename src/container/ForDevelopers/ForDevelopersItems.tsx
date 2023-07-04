@@ -1,83 +1,109 @@
 /* eslint-disable tailwindcss/classnames-order */
-import React from "react"
+
+import { setLocaleText } from "@/functions/setLocaleText"
+import { ForDevelopersApiResponse } from "@/services/types/useCase/userback_for_developers"
+import { FC } from "react"
 
 import ButtonComponent from "@/components/ButtonComponent"
 import ListItem from "@/components/ListItem"
+import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 import TitleAndButton from "@/components/TitleAndButton"
-import ListItemWrapper from "@/components/ListItemWrapper"
 
-const FixItems = () => {
+interface Props {
+  section2: ForDevelopersApiResponse["userback_for_developers"]["section2"]
+  section3: ForDevelopersApiResponse["userback_for_developers"]["section3"]
+  section4: ForDevelopersApiResponse["userback_for_developers"]["section4"]
+  section5: ForDevelopersApiResponse["userback_for_developers"]["section5"]
+  section6: ForDevelopersApiResponse["userback_for_developers"]["section6"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+  section6,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/developer-feedback_1.webp">
-        <TextCol header="Deep browser and system insights">
-          <p>
-            Get high-context video and annotated screenshots for feedback, not
-            just confusing emails. Take it to the next level and enrich user
-            feedback submissions with browser, system and existing customer
-            information from your current toolsets, so you know exactly who and
-            what’s happening.
-          </p>
+      <RowComponent imgUrl={section2.image1}>
+        <TextCol
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
+        >
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
 
-      <RowComponent imgUrl="/images/feedback-for-developers_3.webp">
+      <RowComponent imgUrl={section3.image1}>
         <TextCol
-          header="Delivered to your (virtual) door"
-          button="Learn about Userback integrations"
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+          button={setLocaleText(
+            section3.button1_fa,
+            section3.button1_en,
+            locale
+          )}
         >
-          <p>
-            Get approved feedback delivered directly into your existing
-            workflows for simplicity and wasting time searching. Move feedback
-            from Userback direct to your favorite tools for action – be it Jira,
-            GitLab, GitHub or another choice and have total freedom to work your
-            way.
-          </p>
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
 
       <div className="flex flex-col items-center gap-4">
         <ListItemWrapper>
           <ListItem
-            icon="/icons/Bug-Fixes-1.webp"
-            text="Make ambiguity around bugs and issues a thing of the past with deep insight with every submission. Fix less and build more."
-            title="Fix bugs faster"
-            hasLine={false}
+            icon={section4.image1}
+            text={setLocaleText(section4.text1_fa, section4.text1_en, locale)}
+            title={setLocaleText(
+              section4.title1_fa,
+              section4.title1_en,
+              locale
+            )}
+            hasLine
           />
           <ListItem
-            icon="/icons/session-replay.webp"
-            text="See the full experience leading to errors directly with video and get the guesswork out of developer expectations."
-            title="See it all with Session Replay"
-            hasLine={false}
+            icon={section4.image2}
+            text={setLocaleText(section4.text2_fa, section4.text2_en, locale)}
+            title={setLocaleText(
+              section4.title2_fa,
+              section4.title2_en,
+              locale
+            )}
+            hasLine
           />
           <ListItem
-            icon="/icons/build-software-features.webp"
-            text="Spend less time building features that never get adopted and focus on building high-value features that users actually want."
-            title="Build what counts"
-            hasLine={false}
+            icon={section4.image3}
+            text={setLocaleText(section4.text3_fa, section4.text3_en, locale)}
+            title={setLocaleText(
+              section4.title3_fa,
+              section4.title3_en,
+              locale
+            )}
+            hasLine
           />
         </ListItemWrapper>
         <ButtonComponent
-          text="Learn more about Session Replay"
+          text={setLocaleText(section4.button1_fa, section4.button1_en, locale)}
           style={{ fontSize: 12, paddingInline: 12, paddingBlock: 8 }}
         />
       </div>
 
-      <RowComponent imgUrl="/images/Capture-Feedback.webp">
-        <TextCol header="Eliminate inconsistent feedback">
-          <p>
-            Inconsistency is the enemy of quick bug fixes. Create regular,
-            consistent feedback and eliminate the noise so you can skip that
-            email, phone call or meeting. Fix fast, so you can focus more on
-            building.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <TitleAndButton
-        buttonText="Start your free trial - No credit card required"
-        text="Get to the heart of feedback fast - No guesswork or extra communications required"
+        buttonText={setLocaleText(
+          section6.button1_fa,
+          section6.button1_en,
+          locale
+        )}
+        text={setLocaleText(section6.title1_fa, section6.title1_en, locale)}
         className="mb-32"
         desktopSize={35}
         maxWidth={910}

@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { FeedbackPortalApiResponse } from "@/services/types/platform/feedback_portal"
 import { useQuery } from "@tanstack/react-query"
+import { useRouter } from "next/router"
+import { useState } from "react"
 
-import { useLocaleText } from "@/hooks/useLocaleText"
 import ContactUs from "@/components/ContactUs"
+import Loading from "@/components/Loading"
 import PagesHeader from "@/components/PagesHeader"
 
 import FeedbackPortalItems from "./FeedbackPortalItems"
@@ -21,26 +23,44 @@ const Index = () => {
       },
     }
   )
+  const { locale } = useRouter()
   return (
-    <div className="container">
-      <PagesHeader
-        buttonText={useLocaleText(
-          "آزمایش رایگان را شروع کنید و به پورتال بازخورد خود دسترسی پیدا کنید",
-          "Start free trial and access your feedback portal"
-        )}
-        h1={useLocaleText("پورتال بازخورد", "Feedback Portal")}
-        h2={useLocaleText(
-          "کاربران را در جریان نگه دارید و یک جامعه محصول درگیرتر بسازید",
-          "Keep users in the loop and build a more engaged product community"
-        )}
-        text={useLocaleText(
-          "تمام جنبه های بازخورد کاربر را در یک مکان متمرکز کنید، جایی که می توانید افکار خود را به اشتراک بگذارید، ایده ها را تأیید کنید، وظایف را تعیین کنید و پیشرفت را پیگیری کنید.",
-          "Centralize all aspects of user feedback in one place where you can share thoughts, validate ideas, assign tasks and track progress."
-        )}
-      />
-      <FeedbackPortalItems />
-      <ContactUs section={data?.section7} />
-    </div>
+    <>
+      {!data && <Loading />}
+      {data && (
+        <div className="container">
+          <PagesHeader
+            buttonText={setLocaleText(
+              data.section1.button1_fa,
+              data.section1.button1_en,
+              locale as string
+            )}
+            h1={setLocaleText(
+              data.section1.title1_fa,
+              data.section1.title1_en,
+              locale as string
+            )}
+            h2={setLocaleText(
+              data.section1.title2_fa,
+              data.section1.title2_en,
+              locale as string
+            )}
+            text={setLocaleText(
+              data.section1.text1_fa,
+              data.section1.text1_en,
+              locale as string
+            )}
+          />
+          <FeedbackPortalItems
+            locale={locale as string}
+            section2={data.section2}
+            section3={data.section3}
+            section4={data.section4}
+          />
+          <ContactUs section={data?.section5} />
+        </div>
+      )}
+    </>
   )
 }
 

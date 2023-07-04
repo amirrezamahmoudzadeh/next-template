@@ -65,7 +65,7 @@ const Index = () => {
             text={`Saves time, improves communication. 
         Easy to install and easy to use by clients and colleagues (designer/developer). Communication via comments on the Userback site works well. Meanwhile I have used Userback for several years and am still happy with it.`}
           />
-          <ContactUs section={data?.section7} />
+          <ContactUs section={data?.section6} />
         </div>
       )}
     </>

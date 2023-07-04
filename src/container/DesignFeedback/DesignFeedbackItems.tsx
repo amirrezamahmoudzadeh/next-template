@@ -1,92 +1,102 @@
 /* eslint-disable tailwindcss/classnames-order */
-import React from "react"
 
-import ButtonComponent from "@/components/ButtonComponent"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { DesignFeedbackToolApiRespone } from "@/services/types/useCase/design_feedback_tool"
+import { FC } from "react"
+
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section2: DesignFeedbackToolApiRespone["design_feedback_tool"]["section2"]
+  section3: DesignFeedbackToolApiRespone["design_feedback_tool"]["section3"]
+  section4: DesignFeedbackToolApiRespone["design_feedback_tool"]["section4"]
+  section5: DesignFeedbackToolApiRespone["design_feedback_tool"]["section5"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/Design-Feedback_1-1.webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="BuInteractive design feedback"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
           items={[
-            "No lengthy learning curve",
-            "Set up in under 5 minutes",
-            "Grow with your business",
+            setLocaleText(section2.text2_fa, section2.text2_en, locale),
+            setLocaleText(section2.text3_fa, section2.text3_en, locale),
+            setLocaleText(section2.text4_fa, section2.text4_en, locale),
           ]}
         >
-          <p>
-            Interactive feedback tools streamline and simplify the design
-            feedback process for clients and designers alike. They’re so much
-            easier and faster to use than sending disconnected and ambiguous
-            emails! You can set up your own automated design feedback loop with
-            Userback in under five minutes — no specialized skills required —
-            and start collecting feedback right away.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <div className="flex flex-col items-center gap-8">
         <h1 className="text-[32px] font-medium">
-          Better design. Faster design
+          {setLocaleText(section3.title1_fa, section3.title1_en, locale)}
         </h1>
         <ListItemWrapper>
           <ListItem
-            icon="/icons/upload.webp"
-            text="Instantly upload images, videos, or PDF files."
-            title="Upload designs"
+            icon={section3.image1}
+            text={setLocaleText(section3.text1_fa, section3.text1_en, locale)}
+            title={setLocaleText(
+              section3.title2_fa,
+              section3.title2_en,
+              locale
+            )}
             hasLine={false}
           />
           <ListItem
-            icon="/icons/collab.webp"
-            text="Share with clients so they can add their feedback."
-            title="Collaborate with clients"
+            icon={section3.image2}
+            text={setLocaleText(section3.text2_fa, section3.text2_en, locale)}
+            title={setLocaleText(
+              section3.title3_fa,
+              section3.title3_en,
+              locale
+            )}
             hasLine={false}
           />
           <ListItem
-            icon="/icons/complete.webp"
-            text="Get detailed visual feedback without any ambiguity or confusion."
-            title="Complete projects faster"
+            icon={section3.image3}
+            text={setLocaleText(section3.text3_fa, section3.text3_en, locale)}
+            title={setLocaleText(
+              section3.title4_fa,
+              section3.title4_en,
+              locale
+            )}
             hasLine={false}
           />
         </ListItemWrapper>
       </div>
-      <RowComponent imgUrl="/images/Design-Feedback_2-1.webp">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="Make feedback specific"
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
           items={[
-            "Eliminate design back and forth",
-            "Speed design cycles",
-            "Remove client frustration",
+            setLocaleText(section4.text2_fa, section4.text2_en, locale),
+            setLocaleText(section4.text3_fa, section4.text3_en, locale),
+            setLocaleText(section4.text4_fa, section4.text4_en, locale),
           ]}
         >
-          <p>
-            Say goodbye to vague feedback! Empower clients to give specific
-            feedback with comments as they say it with video and screenshot
-            annotations to speed design windows and reach your goal faster so
-            you can move on to what’s next.
-          </p>
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/UAT_2.webp">
+      <RowComponent imgUrl={section5.image1}>
         <TextCol
-          header="Manage feedback from collection to closure"
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
           items={[
-            "Collect feedback directly",
-            "Distribute feedback to design teams directly",
-            "Keep clients in the loop with your feedback portal",
+            setLocaleText(section5.text2_fa, section5.text2_en, locale),
+            setLocaleText(section5.text3_fa, section5.text3_en, locale),
+            setLocaleText(section5.text4_fa, section5.text4_en, locale),
           ]}
         >
-          <p>
-            Don’t let design feedback get lost in the shuffle… Manage
-            collection, prioritization and action with Userback and close the
-            feedback loop with your personal feedback portal. Collect all
-            feedback in a single location, and distribute projects and feedback
-            to teams via powerful automation and API integrations.
-          </p>
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

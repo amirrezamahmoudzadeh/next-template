@@ -65,7 +65,7 @@ const Index = () => {
             name="Gustavo M."
             text="We love how Userback helps our team to be on top of their game regarding client feedback and team communication. We love how easy it is to use and the range of integrations it has available."
           />
-          <ContactUs section={data?.section7} />
+          <ContactUs section={data?.section6} />
         </div>
       )}
     </>
