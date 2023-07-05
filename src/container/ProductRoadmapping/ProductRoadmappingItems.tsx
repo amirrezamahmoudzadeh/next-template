@@ -1,5 +1,7 @@
 /* eslint-disable tailwindcss/classnames-order */
-import React from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { ProductRoadmappingApiResponse } from "@/services/types/useCase/product_roadmapping"
+import { FC } from "react"
 
 import ButtonComponent from "@/components/ButtonComponent"
 import ListItem from "@/components/ListItem"
@@ -7,69 +9,77 @@ import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section2: ProductRoadmappingApiResponse["product_roadmapping"]["section2"]
+  section3: ProductRoadmappingApiResponse["product_roadmapping"]["section3"]
+  section4: ProductRoadmappingApiResponse["product_roadmapping"]["section4"]
+  section5: ProductRoadmappingApiResponse["product_roadmapping"]["section5"]
+  section6: ProductRoadmappingApiResponse["product_roadmapping"]["section6"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+  section6,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/roadmap_1.webp">
-        <TextCol header="Collect and validate ideas">
-          <p>
-            Stack rank ideas, adopt ongoing user suggestions and build product
-            features that users will actually use. Remove internal noise and
-            guesswork around product decisions by using real data points to gain
-            insight into what the market really wants.
-          </p>
+      <RowComponent imgUrl={section2.image1}>
+        <TextCol
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
+        >
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/roadmap_2.webp">
+      <RowComponent imgUrl={section3.image1}>
         <TextCol
-          header="Prioritize product roadmap decisions"
-          button="Learn about the Feedback Portal"
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+          button={setLocaleText(
+            section3.button2_fa,
+            section3.button1_en,
+            locale
+          )}
         >
-          <p>
-            Track new feature requests, bug fixes and product improvements.
-            Allow stakeholders and users to upvote and comment on existing user
-            feedback so you can easily identify what matters most and skip
-            one-off requests. Find the perfect product fit by focusing on the
-            things that matter most, to the most users.
-          </p>
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <ListItemWrapper>
         <ListItem
-          icon="/icons/connected-icons.webp"
-          text="Keep in touch with users post-release and always understand what they really want."
-          title="Stay connected to users"
-          hasLine={false}
+          icon={section4.image1}
+          text={setLocaleText(section4.text1_fa, section4.text1_en, locale)}
+          title={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+          hasLine
         />
         <ListItem
-          icon="/icons/build-icon.webp"
-          text="Have users screen and rank features and fixes and know you’re building products your users will love, guesswork free."
-          title="Prioritize what you build"
-          hasLine={false}
+          icon={section4.image2}
+          text={setLocaleText(section4.text2_fa, section4.text2_en, locale)}
+          title={setLocaleText(section4.title2_fa, section4.title2_en, locale)}
+          hasLine
         />
         <ListItem
-          icon="/icons/growth-icon.webp"
-          text="Build a roadmap filled with features that the majority of users need to maximize fit, increase satisfaction, reduce churn and drive growth."
-          title="Maximize product fit"
-          hasLine={false}
+          icon={section4.image3}
+          text={setLocaleText(section4.text3_fa, section4.text3_en, locale)}
+          title={setLocaleText(section4.title3_fa, section4.title3_en, locale)}
+          hasLine
         />
       </ListItemWrapper>
-      <RowComponent imgUrl="/images/roadmap_3.webp">
-        <TextCol header="Have the data and evidence to defend your roadmap decisions">
-          <p>
-            Don’t just take direction from whoever has the loudest voice! Don’t
-            take chances on half-baked assumptions! Collect meaningful user
-            insights and directly centralize them within a single platform where
-            you can review, validate and prioritize requests.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <div className="flex flex-col items-center max-w-[700px] mx-auto my-16">
         <h1 className="text-[32px] font-medium text-center tracking-tighter">
-          Bring Product Managers and Devs into alignment. No guesswork required
+          {setLocaleText(section6.title1_fa, section6.title1_en, locale)}
         </h1>
         <ButtonComponent
-          text="Starting validating ideas for your roadmap- Free for 14 days"
+          text={setLocaleText(section6.button1_fa, section6.button1_en, locale)}
           className="mt-8"
           style={{ fontSize: 15 }}
         />

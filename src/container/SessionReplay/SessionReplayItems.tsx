@@ -1,39 +1,39 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { SessionReplayApiResponse } from "@/services/types/platform/session_replay"
+import { FC } from "react"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const SessionReplayItems = () => {
+interface Props {
+  section4: SessionReplayApiResponse["session_replay"]["section4"]
+  section5: SessionReplayApiResponse["session_replay"]["section5"]
+  locale: string
+}
+
+const SessionReplayItems: FC<Props> = ({ locale, section4, section5 }) => {
   return (
     <div className="flex flex-col gap-32 py-32">
-      <RowComponent imgUrl="/images/session-replay_1.webp">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="Don’t take a stab in the dark"
-          button="Check out User Insights"
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale
+          )}
         >
-          <p>
-            Re-creating issues is hard. Avoid the pain by viewing bugs as they
-            occur with detailed insights into user behaviors and technology.
-            Stop burning development cycles only to end with a ‘Close ticket:
-            Cannot recreate’ finale.
-          </p>
-          <p>
-            Session replay provides detailed insights into user behaviors that
-            lead to the bug, captured with high clarify video and delivered to
-            your developers’ digital doorstop. Perfectly paired with User
-            Insights.
-          </p>
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
+          <p>{setLocaleText(section4.text2_fa, section4.text2_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/session-replay_2.webp">
-        <TextCol header="Privacy protection included">
-          <p>
-            Mask sensitive information with privacy protection controls. Stay
-            compliant and minimize your business risk by removing sensitive
-            information from your feedback collection process in a few simple,
-            intuitive clicks that’ll have you and your users submitting and
-            distributing feedback with total confidence.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

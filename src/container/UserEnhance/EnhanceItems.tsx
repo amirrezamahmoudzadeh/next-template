@@ -1,44 +1,46 @@
 /* eslint-disable tailwindcss/classnames-order */
 
-import ButtonComponent from "@/components/ButtonComponent"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { EnhanceAppsAndWebsitesApiReasponse } from "@/services/types/useCase/enhance_apps_and_websites"
+import { FC } from "react"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const EnhanceItems = () => {
+interface Props {
+  section2: EnhanceAppsAndWebsitesApiReasponse["enhance_apps_and_websites"]["section2"]
+  section3: EnhanceAppsAndWebsitesApiReasponse["enhance_apps_and_websites"]["section3"]
+  section4: EnhanceAppsAndWebsitesApiReasponse["enhance_apps_and_websites"]["section4"]
+  locale: string
+}
+
+const EnhanceItems: FC<Props> = ({ locale, section2, section3, section4 }) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/feedback-for-enhancing_1.webp">
-        <TextCol header="Improve UX">
-          <p>
-            Gather general feedback from users on their experiences with your
-            app or website. Identify what they struggle to use or understand and
-            give your product teams and front-end developers a complete view of
-            how to better meet user needs and expectations.
-          </p>
-        </TextCol>
-      </RowComponent>
-      <RowComponent imgUrl="/images/feedback-for-enhancing_2.webp">
-        <TextCol header="Build a community">
-          <p>
-            Foster and grow an engaged, committed product community by creating
-            a central location for suggestions, commentary and voting. Give
-            users a voice, a sense of ownership and build evangelists who can
-            help to create new leads and sell.
-          </p>
-        </TextCol>
-      </RowComponent>
-      <RowComponent imgUrl="/images/roadmap_3 (2).webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="Validate product ideas and decisions"
-          button="Discover product roadmapping with Userback"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
         >
-          <p>
-            Don’t rely on guesswork when making key product decisions — listen
-            to the people who actually pay for your product and who are the best
-            people to tell you what they actually want. Turn their feedback into
-            actionable insights that you can add to your Product Roadmap to
-            enhance and improve your product with total confidence.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
+        </TextCol>
+      </RowComponent>
+      <RowComponent imgUrl={section3.image1}>
+        <TextCol
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+        >
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
+        </TextCol>
+      </RowComponent>
+      <RowComponent imgUrl={section4.image1}>
+        <TextCol
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale
+          )}
+        >
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

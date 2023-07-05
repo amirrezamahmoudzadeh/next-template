@@ -52,9 +52,9 @@ const FeedbackPortalItems: FC<Props> = ({
       </ListItemWrapper>
       <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
         >
-          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

@@ -1,62 +1,67 @@
-import React from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { BuildAppsAndWebsitesApiResponse } from "@/services/types/useCase/build_apps_and_websites"
+import { FC } from "react"
 
-import ButtonComponent from "@/components/ButtonComponent"
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const BuildItems = () => {
+interface Props {
+  section2: BuildAppsAndWebsitesApiResponse["build_apps_and_websites"]["section2"]
+  section3: BuildAppsAndWebsitesApiResponse["build_apps_and_websites"]["section3"]
+  section4: BuildAppsAndWebsitesApiResponse["build_apps_and_websites"]["section4"]
+  section5: BuildAppsAndWebsitesApiResponse["build_apps_and_websites"]["section5"]
+  locale: string
+}
+
+const BuildItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/feedback-for-building_1.webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="Get to market faster"
-          button="Learn more about Screen Annotations"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
+          button={setLocaleText(
+            section2.button1_fa,
+            section2.button1_en,
+            locale
+          )}
         >
-          <p>
-            Don’t get caught up with the back-and-forth emails, phone calls and
-            additional meetings that slow down the product development
-            lifecycle, from design to UAT. Cut out all the back and forth by
-            allowing users to submit annotated screenshots, videos and full
-            session replays with Userback.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <ListItemWrapper>
         <ListItem
-          icon="/icons/back-and-forth.webp"
-          text="Userback automatically collects the user’s system and browser information in the background, so you don’t have to through back and forth trying to chase it."
-          title="Capture the details you need"
+          icon={section3.image1}
+          text={setLocaleText(section3.text1_fa, section3.text1_en, locale)}
+          title={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
           hasLine
         />
         <ListItem
-          icon="/icons/Central.webp"
-          text="Create separate projects in Userback, so you can securely store and manage every piece of feedback in one location for quick access, action and response."
-          title="Centralize it all in one place"
+          icon={section3.image2}
+          text={setLocaleText(section3.text2_fa, section3.text2_en, locale)}
+          title={setLocaleText(section3.title2_fa, section3.title2_en, locale)}
           hasLine
         />
       </ListItemWrapper>
-      <RowComponent imgUrl="/images/Website-Feedback_1-1.webp">
-        <TextCol header="Do User Acceptance Testing like never before">
-          <p>
-            Recreate issues throughout the UAT process with complete clarity of
-            the contributing factors. If you’re relying on email and written
-            communication, maybe it’s time to discover how Userback’s annotated
-            screenshots, video recordings and full session replays (complete
-            with automatically captured browser and system information) can get
-            you to the heart of issues faster.
-          </p>
+      <RowComponent imgUrl={section4.image1}>
+        <TextCol
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+        >
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/UAT_2.webp">
-        <TextCol header="Manage user feedback in one place">
-          <p>
-            With Userback you can centralize all your user feedback in one
-            location for bug reports, feature requests and comments — along with
-            supporting attachments, videos, screenshots and annotated insights —
-            all easily searched and instantly actionable.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>
