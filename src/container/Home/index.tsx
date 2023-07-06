@@ -31,13 +31,19 @@ const Index = () => {
       {!data && <Loading />}
       {data && (
         <>
-          <HomeLanding data={data.section1} />
+          <HomeLanding data={data.section1} locale={locale as string} />
           <div className="container">
             <ShowCase locale={locale as string} section={data.section2} />
-            <HomeItems />
+            <HomeItems 
+            locale={locale as string}
+            section3={data.section3}
+            section4={data.section4}
+            section5={data.section5}
+            section6={data.section6}
+             />
             <QuoteComponent
               locale={locale as string}
-              section={data.section6}
+              section={data.section7}
             />
             <TitleAndButton
               buttonText={setLocaleText(
@@ -47,8 +53,8 @@ const Index = () => {
               )}
               className="mb-10"
               text={setLocaleText(
-                data.section7.text1_fa,
-                data.section7.text1_en,
+                data.section7.text3_fa,
+                data.section7.text3_en,
                 locale as string
               )}
               desktopSize={35}

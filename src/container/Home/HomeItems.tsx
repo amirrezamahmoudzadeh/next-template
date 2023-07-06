@@ -1,58 +1,90 @@
-import React from "react"
+import React, { FC } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { HomeApiResponse } from "@/services/types/useCase/home"
 
 import RowComponent from "@/components/RowComponent"
 
 import HomeItem from "./HomeItem"
 
-const HomeItems = () => {
+interface Props {
+  section3: HomeApiResponse["home"]["section3"]
+  section4: HomeApiResponse["home"]["section4"]
+  section5: HomeApiResponse["home"]["section5"]
+  section6: HomeApiResponse["home"]["section6"]
+  locale: string
+}
+
+const HomeItems: FC<Props> = ({
+  locale,
+  section3,
+  section4,
+  section5,
+  section6,
+}) => {
   return (
     <div className="flex flex-col pt-60 gap-60">
-      <RowComponent imgUrl="/images/Userback-home_1.webp">
+      <RowComponent imgUrl={section3.image2}>
         <HomeItem
-          buttonText="Explore Feedback Collection"
+          buttonText={setLocaleText(
+            section3.button1_fa,
+            section3.button1_en,
+            locale
+          )}
           color="#6042ec"
-          header="Get visual in-app feedback ‘on the fly’"
-          icon="/icons/icon-_COLLECTION.svg"
-          person="Felipe L. CTO"
-          quote="“Getting customer feedback is hard. Our customers used to send us a word file with a lot of disorganized information. With Userback they enter the project and they do all the feedback in the section it belongs.”"
-          text="Let users submit bug reports, feature requests and general comments without leaving your platform, along with supporting screenshots, notes, videos and session replays."
-          title="CAPTURE & COLLECT"
+          header={setLocaleText(section3.title2_fa, section3.title2_en, locale)}
+          icon={section3.image1}
+          person={setLocaleText(section3.text3_fa, section3.text3_en, locale)}
+          quote={setLocaleText(section3.text2_fa, section3.text2_en, locale)}
+          text={setLocaleText(section3.text1_fa, section3.text1_en, locale)}
+          title={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
         />
       </RowComponent>
-      <RowComponent imgUrl="/images/userback-homepage_3.webp">
+      <RowComponent imgUrl={section4.image2}>
         <HomeItem
-          buttonText="Explore Feedback Collection"
+          buttonText={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale
+          )}
           color="#ff4060"
-          header="Get visual in-app feedback ‘on the fly’"
-          icon="/icons/icon-_PRIORITIZE.svg"
-          person="Felipe L. CTO"
-          quote="“Getting customer feedback is hard. Our customers used to send us a word file with a lot of disorganized information. With Userback they enter the project and they do all the feedback in the section it belongs.”"
-          text="Let users submit bug reports, feature requests and general comments without leaving your platform, along with supporting screenshots, notes, videos and session replays."
-          title="ASSESS & PRIORITIZE"
+          header={setLocaleText(section4.title2_fa, section4.title2_en, locale)}
+          icon={section4.image1}
+          person={setLocaleText(section4.text3_fa, section4.text3_en, locale)}
+          quote={setLocaleText(section4.text2_fa, section4.text2_en, locale)}
+          text={setLocaleText(section4.text1_fa, section4.text1_en, locale)}
+          title={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
         />
       </RowComponent>
-      <RowComponent imgUrl="/images/homeapge_3.png">
+      <RowComponent imgUrl={section5.image2}>
         <HomeItem
-          buttonText="Explore Feedback Collection"
+          buttonText={setLocaleText(
+            section5.button1_fa,
+            section5.button1_en,
+            locale
+          )}
           color="#ff8040"
-          header="Get visual in-app feedback ‘on the fly’"
-          icon="/icons/icon-_ASSIGN.svg"
-          person="Felipe L. CTO"
-          quote="“Getting customer feedback is hard. Our customers used to send us a word file with a lot of disorganized information. With Userback they enter the project and they do all the feedback in the section it belongs.”"
-          text="Let users submit bug reports, feature requests and general comments without leaving your platform, along with supporting screenshots, notes, videos and session replays."
-          title="ASSIGN & ACTION"
+          header={setLocaleText(section5.title2_fa, section5.title2_en, locale)}
+          icon={section5.image1}
+          person={setLocaleText(section5.text3_fa, section5.text3_en, locale)}
+          quote={setLocaleText(section5.text2_fa, section5.text2_en, locale)}
+          text={setLocaleText(section5.text1_fa, section5.text1_en, locale)}
+          title={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
         />
       </RowComponent>
-      <RowComponent imgUrl="/images/userback_closing-feedback.png">
+      <RowComponent imgUrl={section6.image2}>
         <HomeItem
-          buttonText="Explore Feedback Collection"
+          buttonText={setLocaleText(
+            section6.button1_fa,
+            section6.button1_en,
+            locale
+          )}
           color="#ffc040"
-          header="Get visual in-app feedback ‘on the fly’"
-          icon="/icons/icon-_CLOSE.svg"
-          person="Felipe L. CTO"
-          quote="“Getting customer feedback is hard. Our customers used to send us a word file with a lot of disorganized information. With Userback they enter the project and they do all the feedback in the section it belongs.”"
-          text="Let users submit bug reports, feature requests and general comments without leaving your platform, along with supporting screenshots, notes, videos and session replays."
-          title="FOLLOW UP & CLOSE"
+          header={setLocaleText(section6.title2_fa, section6.title2_en, locale)}
+          icon={section6.image1}
+          person={setLocaleText(section6.text3_fa, section6.text3_en, locale)}
+          quote={setLocaleText(section6.text2_fa, section6.text2_en, locale)}
+          text={setLocaleText(section6.text1_fa, section6.text1_en, locale)}
+          title={setLocaleText(section6.title1_fa, section6.title1_en, locale)}
         />
       </RowComponent>
     </div>
