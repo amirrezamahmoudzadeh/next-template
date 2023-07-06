@@ -14,12 +14,12 @@ const index = () => {
         text="Looking for Usersnap alternatives? We’ve got your back."
       />
       <UsersnapAlternativeItems />
-      <QuoteComponent
+      {/* <QuoteComponent
         job="Owner, MRW Connected"
         name="Jeff Mackler"
         text="We moved to Userback from another tool Usersnap that we used for a few years. Userback is less expensive, has a better UI and UX, has better features, and more than anything actually responds to customer requests."
       />
-      <ContactUs section={data?.section7} />
+      <ContactUs section={data?.section7} /> */}
     </div>
   )
 }

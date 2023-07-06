@@ -1,19 +1,19 @@
 /* eslint-disable tailwindcss/classnames-order */
 
-import { useState } from "react"
-import { useRouter } from "next/router"
+import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { SessionReplayApiResponse } from "@/services/types/platform/session_replay"
 import { useQuery } from "@tanstack/react-query"
+import { useRouter } from "next/router"
+import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
+import Loading from "@/components/Loading"
 import PagesHeader from "@/components/PagesHeader"
 import SingleVideo from "@/components/SingleVideo"
 
 import SessionReplayItems from "./SessionReplayItems"
-import Loading from "@/components/Loading"
-import { setLocaleText } from "@/functions/setLocaleText"
 
 const Index = () => {
   const [data, setData] = useState<SessionReplayApiResponse["session_replay"]>()
@@ -33,7 +33,7 @@ const Index = () => {
       {!data && <Loading />}
       {data && (
         <div className="container">
-        <PagesHeader
+          <PagesHeader
             buttonText={setLocaleText(
               data.section1.button1_fa,
               data.section1.button1_en,
@@ -67,18 +67,18 @@ const Index = () => {
               )}
             />
             <p>
-            {setLocaleText(
-              data.section2.text1_fa,
-              data.section2.text1_en,
-              locale as string
-            )}
+              {setLocaleText(
+                data.section2.text1_fa,
+                data.section2.text1_en,
+                locale as string
+              )}
             </p>
           </div>
-          <SingleVideo />
-          <SessionReplayItems 
-          locale={locale as string}
-          section4={data.section4}
-          section5={data.section5}
+          <SingleVideo video={data.section3.video1} />
+          <SessionReplayItems
+            locale={locale as string}
+            section4={data.section4}
+            section5={data.section5}
           />
           <ContactUs section={data?.section6} />
         </div>

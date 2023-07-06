@@ -1,9 +1,9 @@
+import { useState } from "react"
+import { useRouter } from "next/router"
 import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { DesignFeedbackToolApiRespone } from "@/services/types/useCase/design_feedback_tool"
 import { useQuery } from "@tanstack/react-query"
-import { useRouter } from "next/router"
-import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
 import Loading from "@/components/Loading"
@@ -60,9 +60,13 @@ const Index = () => {
             section5={data.section5}
           />
           <QuoteComponent
-            job="CMO, Vision6"
-            name="Jess Pantalleresco"
-            text="Userback is so amazing! We used to rely on spreadsheets and emails for managing internal feedback on our website improvements. With Userback though it is so much easier. It has saved us hours of work with our website re-design project!"
+            locale={locale as string}
+            section={{
+              text1_en: data.section6.text1_en,
+              text1_fa: data.section6.text1_fa,
+              text2_en:data.section6.title1_en,
+              text2_fa:data.section6.title1_fa,
+            }}
           />
           <ContactUs section={data?.section7} />
         </div>

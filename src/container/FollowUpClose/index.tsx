@@ -85,9 +85,8 @@ const Index = () => {
             section5={data.section5}
            />
           <QuoteComponent
-            job="Founder"
-            name="Juan Manuel G."
-            text="EGA Futura Software is in love with Userback. It's easy to use, and very intuitive for our support representatives and our end users."
+            locale={locale as string}
+            section={data.section6}
             color="#ffc040"
           />
           <ContactUs section={data?.section7} />

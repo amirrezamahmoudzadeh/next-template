@@ -85,9 +85,8 @@ const Index = () => {
             section6={data.section6}
           />
           <QuoteComponent
-            job="Product Manager"
-            name="JP S"
-            text="I recently started a new position and needed to re-invigorate user feedback. After some research, I selected Userback, because it integrated well with everything I needed."
+            section={data.section7}
+            locale={locale as string}
             color="#ff4060"
           />
           <ContactUs section={data?.section8} />

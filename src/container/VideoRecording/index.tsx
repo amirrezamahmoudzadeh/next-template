@@ -53,18 +53,18 @@ const Index = () => {
               locale as string
             )}
           />
-          <VideosTabs type={1} />
+          <VideosTabs
+            type={1}
+            locale={locale as string}
+            section={[data.section2_tab1, data.section2_tab2]}
+          />
           <VideoRecordingItems
             locale={locale as string}
             section3={data.section3}
             section4={data.section4}
             section5={data.section5}
           />
-          <QuoteComponent
-            job="Customer Success Executive, Zendesk"
-            name="Ryan Soper-Powell"
-            text="Video feedback is awesome! It makes it even easier for folks to communicate in their own words what they want to change."
-          />
+          <QuoteComponent locale={locale as string} section={data.section6} />
           <ContactUs section={data?.section7} />
         </div>
       )}

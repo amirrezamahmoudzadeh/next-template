@@ -46,9 +46,8 @@ const Index = () => {
           />
 
           <QuoteComponent
-            job="Director, Big Budda Boom"
-            name="Andy Pudmenzky"
-            text={`Allowing clients to click on the designs and show us exactly what they're referring to has completely changed the way we gather client feedback. We've been so impressed with Userback. I'm not joking when I say it's saved us hours of time!`}
+           locale={locale as string}
+           section={data.section6}
           />
           <ContactUs section={data?.section7} />
         </div>

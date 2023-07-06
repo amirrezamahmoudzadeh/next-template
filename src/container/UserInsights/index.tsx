@@ -58,9 +58,8 @@ const Index = () => {
             section4={data.section4}
           />
           <QuoteComponent
-            job="Founder"
-            name="Dashbite T."
-            text="Userback is the perfect way to collect and control our user feedback for our website projects and keep it in one location. it also allows you to provide customer support at a high-end level."
+           locale={locale as string}
+           section={data.section5}
           />
           <ContactUs section={data?.section6} />
         </div>

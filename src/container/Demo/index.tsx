@@ -1,9 +1,9 @@
+import { useState } from "react"
+import { useRouter } from "next/router"
 import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { HandsOnDemoApiResponse } from "@/services/types/platform/hands_on_demo"
 import { useQuery } from "@tanstack/react-query"
-import { useRouter } from "next/router"
-import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
 import Loading from "@/components/Loading"
@@ -49,11 +49,7 @@ const Index = () => {
           />
           <ShowCase locale={locale as string} section={data.section2} />
           <div className="mt-32 h-[50vh] w-full bg-indigo-100"></div>
-          <QuoteComponent
-            job="President + Founder"
-            name="Just S."
-            text={`One of my best investments ever. I love the simplicity of the tool and the features have been generous and powerful. I love that I can embed the feedback tools anywhere I work across multiple CMS systems. The reliability has been great as well.`}
-          />
+          <QuoteComponent locale={locale as string} section={data.section3} />
           <TitleAndButton
             buttonText={setLocaleText(
               data.section4.button1_fa,

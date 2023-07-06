@@ -88,10 +88,8 @@ const Index = () => {
             section7={data.section7}
            />
           <QuoteComponent
-            job=""
-            name="G2 Review"
-            text="The fact that I don't have to schedule multiple review meetings, go back and fort emails of emails and text just make sure I understand what the feed is before investing hours on changes that could be hit or miss."
-          />
+            locale={locale as string}
+            section={data.section8}/>
           <ContactUs section={data?.section9} />
         </div>
       )}

@@ -60,9 +60,8 @@ const Index = () => {
             section5={data.section5}
           />
           <QuoteComponent
-            job="Assistant Engineering Manager"
-            name="Naveen D."
-            text={`I love the software and the major selling point for us was that it natively integrated with Teamwork ( This is our project management tool which we use for 50+ employees ) The support is always amazing and had always had a positive reply. I had one requirement and they were able to implement it within a day which shows that they hear their customers.`}
+           locale={locale as string}
+           section={data.section6}
           />
           <ContactUs section={data?.section7} />
         </div>

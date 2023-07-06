@@ -60,9 +60,8 @@ const Index = () => {
             section5={data.section5}
           />
           <QuoteComponent
-            job="Founder"
-            name="Shane B."
-            text={`I've been a Userback customer for several years and it's by far the best tool out there for acquiring visual feedback on our clients websites. And as I'm always testing new tools to compare against those I've been using, I've tried them all, and Userback is by far, the best.`}
+            locale={locale as string}
+            section={data.section6}
           />
           <ContactUs section={data?.section7} />
         </div>

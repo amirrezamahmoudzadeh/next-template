@@ -54,7 +54,10 @@ const Index = () => {
               locale as string
             )}
           />
-          <VideosTabs type={1} />
+          <VideosTabs type={1} 
+           locale={locale as string}
+           section={[data.section2_tab1, data.section2_tab2]}
+           />
           <ScreenAnnotationItems
             locale={locale as string}
             section3={data.section3}

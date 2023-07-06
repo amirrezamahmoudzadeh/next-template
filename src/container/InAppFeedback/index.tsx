@@ -1,13 +1,13 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { useState } from "react"
+import { useRouter } from "next/router"
 import BlogCard from "@/container/Blog/BlogCard"
 import { BlogData } from "@/container/Blog/BlogData"
 import { setLocaleText } from "@/functions/setLocaleText"
 import { getData } from "@/services/apis"
 import { InAppFeedbackApiResponse } from "@/services/types/platform/in_app_feedback"
 import { useQuery } from "@tanstack/react-query"
-import { useRouter } from "next/router"
-import { useState } from "react"
 
 import ContactUs from "@/components/ContactUs"
 import Header from "@/components/Header"
@@ -77,12 +77,12 @@ const Index = () => {
               )}
             </p>
           </div>
-          <VideosTabs type={1} />
-          <QuoteComponent
-            job="Senior Digital Designer – DigiStorm"
-            name="Amy Waddell"
-            text={`Userback has helped streamline our team's QA processes. We work with lots of clients and have many cross-team projects so it’s been a breath of fresh air having all QA in the one place. I particularly love how easy it is to check once feedback has been completed.`}
+          <VideosTabs
+            type={1}
+            locale={locale as string}
+            section={[data.section3_tab1, data.section3_tab2]}
           />
+          <QuoteComponent locale={locale as string} section={data.section4} />
           <InAppFeedbackItems
             locale={locale as string}
             section6={data.section6}

@@ -63,9 +63,8 @@ const Index = () => {
             section8={data.section8}
           />
           <QuoteComponent
-            job="Product Manager"
-            name="Lora K."
-            text={`It is really easy to set the Userback widget on your product, customize how it looks, and link it with whatever other tool you like. It is also extremely straightforward from the end user's perspective - even non tech-savvy users take advantage of it to report issues or make suggestions for our platform.`}
+           locale={locale as string}
+           section={data.section8}
           />
           <ContactUs section={data?.section9} />
         </div>

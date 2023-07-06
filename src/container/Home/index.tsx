@@ -36,12 +36,8 @@ const Index = () => {
             <ShowCase locale={locale as string} section={data.section2} />
             <HomeItems />
             <QuoteComponent
-              job="President + Founder"
-              name="Just S."
-              text=" One of my best investments ever. I love the simplicity of the tool
-            and the features have been generous and powerful. I love that I can
-            embed the feedback tools anywhere I work across multiple CMS
-            systems. The reliability has been great as well."
+              locale={locale as string}
+              section={data.section6}
             />
             <TitleAndButton
               buttonText={setLocaleText(

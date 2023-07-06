@@ -53,17 +53,24 @@ const Index = () => {
               locale as string
             )}
           />
-          <VideosTabs type={2} />
+          <VideosTabs
+            type={2}
+            locale={locale as string}
+            section={[data.section2_tab1, data.section2_tab2]}
+          />
           <UserAcceptanceItems
             locale={locale as string}
             section3={data.section3}
             section4={data.section4}
           />
           <QuoteComponent
-            job="Founder"
-            name="Ralf L."
-            text={`Saves time, improves communication. 
-        Easy to install and easy to use by clients and colleagues (designer/developer). Communication via comments on the Userback site works well. Meanwhile I have used Userback for several years and am still happy with it.`}
+            locale={locale as string}
+            section={{
+              text1_en: data.section5.text1_en,
+              text1_fa: data.section5.text1_fa,
+              text2_en: data.section5.title1_en,
+              text2_fa: data.section5.title1_fa,
+            }}
           />
           <ContactUs section={data?.section6} />
         </div>

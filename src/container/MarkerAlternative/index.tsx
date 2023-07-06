@@ -14,12 +14,12 @@ const index = () => {
         text="Looking for Marker.io alternatives? We’ve got your back."
       />
       <MarkerAlternativeItems />
-      <QuoteComponent
+      {/* <QuoteComponent
         job="Vice President – Print Tracker"
         name="Clark McCauley"
         text="Userback is so much faster. We were literally up and running in under 5 minutes and that included integrating with our ClickUp ticketing system"
       />
-      <ContactUs section={data?.section7} />
+      <ContactUs section={data?.section7} /> */}
     </div>
   )
 }
