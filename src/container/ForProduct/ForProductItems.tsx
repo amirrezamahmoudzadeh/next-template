@@ -1,79 +1,88 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { ForProductManagersApiResponse } from "@/services/types/useCase/userback_for_product_managers"
+import { FC } from "react"
+
 import ButtonComponent from "@/components/ButtonComponent"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
 import ProductCard from "./ProductCard"
 
-const FixItems = () => {
+interface Props {
+  section2: ForProductManagersApiResponse["userback_for_product_managers"]["section2"]
+  section3: ForProductManagersApiResponse["userback_for_product_managers"]["section3"]
+  section4: ForProductManagersApiResponse["userback_for_product_managers"]["section4"]
+  section5: ForProductManagersApiResponse["userback_for_product_managers"]["section5"]
+  section6: ForProductManagersApiResponse["userback_for_product_managers"]["section6"]
+  section7: ForProductManagersApiResponse["userback_for_product_managers"]["section7"]
+  section8: ForProductManagersApiResponse["userback_for_product_managers"]["section8"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+  section6,
+  section7,
+  section8,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/user-feedback-for-product-managers_1 (1).webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="Improve user satisfaction"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
           items={[
-            "Addresses user pain points directly",
-            "Increase product relevancy",
-            "Enhance usability and your product’s UX",
-            "Build user trust",
-            "Encourage loyalty",
+            setLocaleText(section2.text2_fa, section2.text2_en, locale),
+            setLocaleText(section2.text3_fa, section2.text3_en, locale),
+            setLocaleText(section2.text4_fa, section2.text4_en, locale),
+            setLocaleText(section2.text5_fa, section2.text5_en, locale),
+            setLocaleText(section2.text6_fa, section2.text6_en, locale),
           ]}
         >
-          <p>
-            Keep users happy and engaged by understanding what users like and
-            dislike about product, need and want. Then make the right changes
-            that to improve user satisfaction and reduce customer churn.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/roadmap_3 (1).webp">
+      <RowComponent imgUrl={section3.image1}>
         <TextCol
-          header="Prioritize feature development"
-          button="Learn more about Roadmapping"
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+          button={setLocaleText(
+            section3.button1_fa,
+            section3.button1_en,
+            locale
+          )}
         >
-          <p>
-            With limited resources, it’s important for Product Managers to
-            prioritize which features to develop next. User feedback help’
-            identify the features that are most important to your users,
-            allowing you to focus development efforts with confidence.
-          </p>
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <ProductCard />
-      <RowComponent imgUrl="/images/user-feedback-for-product-managers_2a.webp">
-        <TextCol header="Increase user engagement">
-          <p>
-            Entice users back again and again, by delivering the features and
-            functionality they need every time with validated product ideas.
-            Build what they love and watch active users and session times
-            skyrocket!
-          </p>
+      <ProductCard locale={locale} section={section4} />
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/user-feedback-for-product-managers_2a.webp">
-        <TextCol header="Nail that software accuracy KPI">
-          <p>
-            Find and fix more bugs faster through development, UAT, QA and
-            post-release product phases. Improve accuracy with visual bug
-            reports complete with system info and get straight to the heart of
-            the problem.
-          </p>
+      <RowComponent imgUrl={section6.image1}>
+        <TextCol
+          header={setLocaleText(section6.title1_fa, section6.title1_en, locale)}
+        >
+          <p>{setLocaleText(section6.text1_fa, section6.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/software-feature-request_1 (1).webp">
-        <TextCol header="Never deprioritize feedback again">
-          <p>
-            Feedback has been a time-consuming and manual process for the
-            longest time. Trying to continuously get user insights and feedback
-            is often the first thing to go in favor of more pressing needs. Now
-            you can maintain meaningful connections with your users with near
-            zero effort.
-          </p>
+      <RowComponent imgUrl={section7.image1}>
+        <TextCol
+          header={setLocaleText(section7.title1_fa, section7.title1_en, locale)}
+        >
+          <p>{setLocaleText(section7.text1_fa, section7.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <ButtonComponent
-        text="Make product management simpler - Start your free trial today"
+        text={setLocaleText(section8.button1_fa, section8.button1_en, locale)}
         className="self-center"
       />
     </div>

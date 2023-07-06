@@ -3,6 +3,7 @@
 import React from "react"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { ExternalLink } from "@/functions/ExternalLinks"
 import MobileNavItem from "@/layout/MobileNavItem"
 import {
   Accordion,
@@ -13,6 +14,9 @@ import {
 } from "@chakra-ui/react"
 import { motion } from "framer-motion"
 
+import { useLocaleText } from "@/hooks/useLocaleText"
+import CloseButton from "@/components/CloseButton"
+
 interface Props {
   isOpen: boolean
   setIsOpen: (value: boolean) => void
@@ -20,44 +24,24 @@ interface Props {
 
 const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
   const router = useRouter()
+  const alertText = useLocaleText(
+    "این یک لینک خارجی است",
+    "This is an external Link"
+  )
   return (
     <motion.div
       initial={{ right: -320, zIndex: -1 }}
       animate={isOpen ? { right: 0, zIndex: 0 } : { right: -320, zIndex: -1 }}
       transition={{ duration: 0.8, ease: [0.15, 0.2, 0.1, 0] }}
-      className={`fixed flex flex-col gap-10 text-white sm:w-[360px] py-14 sm:px-[60px] h-full justify-center w-[78vw] px-[30px] ${
+      className={`fixed flex flex-col gap-10 text-white sm:w-[360px] py-14 sm:px-[60px] h-full justify-center w-[78vw] px-[50px] ${
         isOpen ? "right-0" : "right-[78vw] sm:right-[360px]"
       }`}
     >
-      <div
-        onClick={() => setIsOpen(false)}
-        className="flex items-center self-end justify-center w-12 h-12 rounded-full"
-        style={{ backgroundColor: "rgba(0,0,0,.1)" }}
-      >
-        <motion.div
-          className="w-0.5 bg-white"
-          initial={{ x: 0, rotate: 45 }}
-          animate={
-            isOpen
-              ? { x: 0, rotate: 45, opacity: 1, height: "26px" }
-              : { opacity: 0, height: 0 }
-          }
-          transition={{ duration: 0.8, ease: [0.15, 0.2, 0.1, 0], delay: 0.5 }}
-        ></motion.div>
-        <motion.div
-          className="absolute w-0.5 bg-white"
-          initial={{ x: 0, rotate: 135 }}
-          animate={
-            isOpen
-              ? { x: 0, rotate: 135, opacity: 1, height: "26px" }
-              : { opacity: 0, height: 0 }
-          }
-          transition={{ duration: 0.8, ease: [0.15, 0.2, 0.1, 0], delay: 0.5 }}
-        ></motion.div>
-      </div>
+      <CloseButton isOpen={isOpen} onClick={() => setIsOpen(false)} hasDelay />
       <div
         className="p-4 mb-auto rounded"
         style={{ backgroundColor: "rgba(0,0,0,.1)" }}
+        onClick={() => ExternalLink(alertText)}
       >
         Sign In
       </div>
@@ -221,15 +205,13 @@ const MobileNav: React.FC<Props> = ({ isOpen, setIsOpen }) => {
                 title="Documentation"
                 links={[
                   { link: "", title: " Platform Documentation" },
-                { link: "", title: "API Reference" },
-                { link: "", title: "Browser Extension" },
+                  { link: "", title: "API Reference" },
+                  { link: "", title: "Browser Extension" },
                 ]}
               />
               <MobileNavItem
                 title="Userback Userversity"
-                links={[
-                  { link: "", title: "Resource Hub" },
-                ]}
+                links={[{ link: "", title: "Resource Hub" }]}
               />
             </AccordionPanel>
           </AccordionItem>

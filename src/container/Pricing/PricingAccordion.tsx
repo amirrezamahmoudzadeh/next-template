@@ -19,6 +19,7 @@ const PricingAccordion = () => {
         return (
           <AccordionItem
             borderTop={0}
+            key={item.header}
             borderBottomWidth={"2px"}
             borderBottomColor={"rgba(0,0,0,0.08)"}
             _last={{ borderBottomWidth: "2px" }}

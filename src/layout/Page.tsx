@@ -1,12 +1,19 @@
-import { motion } from "framer-motion"
-import Head from "next/head"
-import { useState } from "react"
+import { useState } from "react";
+import Head from "next/head";
+import { motion } from "framer-motion";
 
-import { pageComponentProps } from "@/types/general"
 
-import Footer from "./Footer"
-import MobileNav from "./MobileNav"
-import TopNav from "./TopNav"
+
+import { pageComponentProps } from "@/types/general";
+import SearchDrawer from "@/components/SearchDrawer";
+
+
+
+import Footer from "./Footer";
+import MobileNav from "./MobileNav";
+import TopNav from "./TopNav";
+import { useDisclosure } from "@chakra-ui/react";
+
 
 const Page: React.FC<pageComponentProps> = ({
   title,
@@ -15,13 +22,17 @@ const Page: React.FC<pageComponentProps> = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+
   return (
     <div className="bg-[#232e3a]">
-      {title ? (
+      {title && (
         <Head>
           <title>{title} | Userback</title>
         </Head>
-      ) : null}
+      )}
+      <SearchDrawer isOpen={isOpen} onClose={onClose} />
       <MobileNav isOpen={isMenuOpen} setIsOpen={setIsMenuOpen} />
       <motion.div
         // variants={variants}
@@ -33,7 +44,7 @@ const Page: React.FC<pageComponentProps> = ({
         }}
         className={`z-10 mx-auto flex min-h-screen flex-col overflow-hidden px-safe`}
       >
-        <TopNav setIsMenuOpen={setIsMenuOpen} />
+        <TopNav setIsMenuOpen={setIsMenuOpen} onOpen={onOpen} />
         <main className={`flex-1 ${className} pt-[80px]`}>{children}</main>
         <Footer />
       </motion.div>

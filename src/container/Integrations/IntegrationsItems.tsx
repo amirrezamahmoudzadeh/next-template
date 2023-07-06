@@ -1,29 +1,38 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { IntegrationsApiResponse } from "@/services/types/platform/integrations"
+import { FC } from "react"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const IntegrationsItems = () => {
+interface Props {
+  section2: IntegrationsApiResponse["integrations"]["section2"]
+  section3: IntegrationsApiResponse["integrations"]["section3"]
+  locale: string
+}
+
+const IntegrationsItems: FC<Props> = ({ locale, section2, section3 }) => {
   return (
     <div className="flex flex-col gap-32 pb-32">
-      <RowComponent imgUrl="/images/Bug-Tracking_3.webp">
-        <TextCol header="Designed to work with the tools you already use and love">
-          <p>
-            Siloed information is the enemy of effective processes. Connect
-            Userback with your favorite tools where Product Managers, Designers
-            and Developers are comfortable working. Automate feedback
-            notifications to external teams for action and add contextual
-            information for accurate flow up.
-          </p>
+      <RowComponent imgUrl={section2.image1}>
+        <TextCol
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
+        >
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/user-feedback-integrations_1.webp">
-        <TextCol header="Design custom workflows with webhooks" button="Learn more about Webhooks">
-          <p>
-            Need more flexibility? Create custom workflows with Userback and
-            Webhooks, push the limits of your feedback loop, and create new ways
-            to work.
-          </p>
+      <RowComponent imgUrl={section3.image1}>
+        <TextCol
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+          button={setLocaleText(
+            section3.button1_fa,
+            section3.button1_en,
+            locale
+          )}
+        >
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

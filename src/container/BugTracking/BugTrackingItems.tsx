@@ -1,135 +1,125 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { FC } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { BugTrackingApiResponse } from "@/services/types/useCase/bug-tracking"
+
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section2: BugTrackingApiResponse["bug_tracking"]["section2"]
+  section3: BugTrackingApiResponse["bug_tracking"]["section3"]
+  section4: BugTrackingApiResponse["bug_tracking"]["section4"]
+  section5: BugTrackingApiResponse["bug_tracking"]["section5"]
+  section6: BugTrackingApiResponse["bug_tracking"]["section6"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  section2,
+  section3,
+  section4,
+  section5,
+  section6,
+  locale,
+}) => {
   return (
     <div className="flex flex-col gap-32 pb-32">
       <div className="flex flex-col items-center gap-4 sm:px-24 xl:px-64">
         <h1 className="text-[32px] font-medium text-center">
-          We (honestly) love bug tracking
+          {setLocaleText(section2.title1_fa, section2.title1_en, locale)}
         </h1>
         <p className="text-center">
-          That’s why we’re consistently rated as one of the world’s leading bug
-          tracking platforms.
+          {setLocaleText(section2.text1_fa, section2.text1_en, locale)}
         </p>
         <img
-          src="/images/Bug-Tracking.webp"
+          src={section2.image1}
           alt="Bug-Tracking"
           className="max-w-[1000px] w-full"
         />
         <h1 className="text-[32px] font-medium text-center">
-          Get the complete context for every bug
+          {setLocaleText(section2.title1_fa, section2.title2_en, locale)}
         </h1>
         <p className="text-center">
-          Most developers will tell you that fixing bugs is a pain in the butt.
-          Too often they receive ambiguous and incomplete reports, which means
-          they have to waste precious time and effort chasing up more
-          information before they can get started.
+          {setLocaleText(section2.text2_fa, section2.text2_en, locale)}
         </p>
         <p className="text-center">
-          With Userback developers have immediate access to all the information
-          that they need to replicate and resolve issues because users can
-          submit complete and actionable bug reports along with supporting
-          information. All relevant console, system and user data is
-          automatically captured in the background.
+          {setLocaleText(section2.text3_fa, section2.text3_en, locale)}
         </p>
       </div>
-      <RowComponent imgUrl="/images/Bug-Tracking_1.webp">
+      <RowComponent imgUrl={section3.image2}>
         <TextCol
-          header="Bug reports your developers will love"
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
           items={[
-            "Annotated Screen Shots",
-            "Screen Capture Videos",
-            "Audio Recordings",
-            "Session Replays",
-            "Console Logs",
-            "Session Replays",
+            setLocaleText(section3.text2_fa, section3.text2_en, locale),
+            setLocaleText(section3.text3_fa, section3.text3_en, locale),
+            setLocaleText(section3.text4_fa, section3.text4_en, locale),
+            setLocaleText(section3.text5_fa, section3.text5_en, locale),
+            setLocaleText(section3.text6_fa, section3.text6_en, locale),
+            setLocaleText(section3.text7_fa, section3.text7_en, locale),
           ]}
         >
-          <p>
-            Every bug report comes with user commentary and system information
-            that shows developers exactly what was happening when an issue
-            arose:
-          </p>
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Bug-Tracking_2.webp">
+      <RowComponent imgUrl={section4.image2}>
         <TextCol
-          header="Save time and work smarter together"
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
           items={[
-            "Custom Workflows",
-            "Email & Chat Notifications",
-            "User Permissions",
-            "Assign Tasks",
-            "Team Collaboration",
-            "Filter Bugs, Feedback & more",
+            setLocaleText(section4.text3_fa, section4.text3_en, locale),
+            setLocaleText(section4.text4_fa, section4.text4_en, locale),
+            setLocaleText(section4.text5_fa, section4.text5_en, locale),
+            setLocaleText(section4.text6_fa, section4.text6_en, locale),
+            setLocaleText(section4.text7_fa, section4.text7_en, locale),
+            setLocaleText(section4.text8_fa, section4.text8_en, locale),
           ]}
         >
-          <p>
-            Userback helps teams collaborate by seamlessly integrating bug
-            reports into your existing workflows. When a user reports a bug, you
-            receive a real-time notification and can reply immediately to
-            confirm the report has been received and to ask any further
-            questions.
-          </p>
-          <p>
-            Once you have assessed the information you can collaborate with your
-            team to create actionable tasks, prioritize action, assign
-            resources, track progress and confirm closure.
-          </p>
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
+          <p>{setLocaleText(section4.text2_fa, section4.text2_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <div className="flex flex-col items-center gap-8">
         <h1 className="text-[32px] font-medium">
-          Designed to work the way you work
+          {setLocaleText(section5.title1_fa, section5.title1_en, locale)}
         </h1>
         <ListItemWrapper>
           <ListItem
-            icon="/icons/Github-integration.webp"
-            text="Automatically send visual bug reports to your GitHub repository."
-            title="From app to repository, instantly"
+            icon={section5.image1}
+            text={setLocaleText(section5.text1_fa, section5.text1_en, locale)}
+            title={setLocaleText(section5.title2_fa, section5.title2_en, locale)}
             hasLine={false}
           />
           <ListItem
-            icon="/icons/Gitlab-integration.webp"
-            text="Streamline bug tracking by instantly sending visual bug reports as new issues in GitLab."
-            title="Visual reports direct to developers"
+            icon={section5.image2}
+            text={setLocaleText(section5.text2_fa, section5.text2_en, locale)}
+            title={setLocaleText(section5.title3_fa, section5.title3_en, locale)}
             hasLine={false}
           />
           <ListItem
-            icon="/icons/Jira-integration.webp"
-            text="Save money on licenses by allowing your entire team to send visual bug reports directly into Jira."
-            title="Save money, fix faster"
+            icon={section5.image3}
+            text={setLocaleText(section5.text3_fa, section5.text3_en, locale)}
+            title={setLocaleText(section5.title4_fa, section5.title4_en, locale)}
             hasLine={false}
           />
         </ListItemWrapper>
       </div>
-      <RowComponent imgUrl="/images/Bug-Tracking_3.webp">
+     <RowComponent imgUrl={section6.image2}>
         <TextCol
-          header="Do you rely on disconnected tools for managing bug reports?"
+          header={setLocaleText(section6.title1_fa, section6.title1_en, locale)}
           items={[
-            "Dozens of Native Integrations",
-            "Zapier Integration",
-            "Advanced Targeting",
-            "Webhooks",
-            "Javascript API",
-            "Browser Extension",
+            setLocaleText(section6.text3_fa, section6.text3_en, locale),
+            setLocaleText(section6.text4_fa, section6.text4_en, locale),
+            setLocaleText(section6.text5_fa, section6.text5_en, locale),
+            setLocaleText(section6.text6_fa, section6.text6_en, locale),
+            setLocaleText(section6.text7_fa, section6.text7_en, locale),
+            setLocaleText(section6.text8_fa, section6.text8_en, locale),
           ]}
         >
-          <p>
-            If you still use emails, phone calls and spreadsheets to manage
-            bugs, it’s time to look for an all-in-one solution like Userback.
-          </p>
-          <p>
-            You can centralize all your bug report information and tasks in one
-            easy-to-manage workspace. The highly customizable user interface can
-            easily be integrated with your other project management processes
-            and tools using:
-          </p>
+          <p>{setLocaleText(section6.text1_fa, section6.text1_en, locale)}</p>
+          <p>{setLocaleText(section6.text2_fa, section6.text2_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

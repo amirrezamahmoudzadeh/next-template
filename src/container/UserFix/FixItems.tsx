@@ -1,69 +1,80 @@
 /* eslint-disable tailwindcss/classnames-order */
-import React from "react"
 
-import ButtonComponent from "@/components/ButtonComponent"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { FixAppsAndWebsitesApiResponse } from "@/services/types/useCase/fix_apps_and_websites"
+import { FC } from "react"
+
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section2: FixAppsAndWebsitesApiResponse["fix_apps_and_websites"]["section2"]
+  section3: FixAppsAndWebsitesApiResponse["fix_apps_and_websites"]["section3"]
+  section4: FixAppsAndWebsitesApiResponse["fix_apps_and_websites"]["section4"]
+  section5: FixAppsAndWebsitesApiResponse["fix_apps_and_websites"]["section5"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/feedback-for-fixing_1.webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="Capture bug reports in-app"
-          button="Discover in-app feedback"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
+          button={setLocaleText(
+            section2.button1_fa,
+            section2.button1_en,
+            locale
+          )}
         >
-          <p>
-            Allow users to submit bug reports ‘on-the-fly’ in your app or
-            website and collect the details and insights your teams need to
-            action.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <ListItemWrapper>
         <ListItem
-          icon="/icons/Bug-Fixes-1.webp"
-          text="Get all the information you need first time, every time with full session replays, system data and browser information showing exactly what causes any bugs or issues."
-          title="Recreate bugs precisely"
+          icon={section3.image1}
+          text={setLocaleText(section3.text1_fa, section3.text1_en, locale)}
+          title={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
           hasLine
         />
         <ListItem
-          icon="/icons/faster-bug-fix.png"
-          text="Accelerate and automate resolution using a single management platform for all your user feedback and say goodbye to disconnected manual processes, emails, calls and surveys."
-          title="Clarity and speed"
+          icon={section3.image2}
+          text={setLocaleText(section3.text2_fa, section3.text2_en, locale)}
+          title={setLocaleText(section3.title2_fa, section3.title2_en, locale)}
           hasLine
         />
         <ListItem
-          icon="/icons/happy-developer.png"
-          text="Automatically integrate user feedback into your existing workflows and give developers all the information they need to get to work on fixes and features right away."
-          title="Happier developers"
+          icon={section3.image3}
+          text={setLocaleText(section3.text3_fa, section3.text3_en, locale)}
+          title={setLocaleText(section3.title3_fa, section3.title3_en, locale)}
           hasLine
         />
       </ListItemWrapper>
-      <RowComponent imgUrl="/images/feedback-to-fix-apps_2.webp">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="Get full session replays"
-          button="Learn more about Screen Annotations"
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale
+          )}
         >
-          <p>
-            Understand exactly what leads to an issue with timestamped session
-            replay video and supercharge your time to resolution by giving your
-            teams all the information they need to solve the problem from the
-            start – without the extra email or call.
-          </p>
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/feedback-for-fixing_2.webp">
-        <TextCol header="Deliver feedback into your workflows">
-          <p>
-            Push user feedback directly into the places where your teams work
-            and eliminate cumbersome silos of information. Automate with
-            Userback and deliver alerts to Slack or bug fixes directly to the
-            tools your developers use, like GitHub, GitLab and Jira and speed
-            response times.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

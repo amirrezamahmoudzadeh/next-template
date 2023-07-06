@@ -1,60 +1,69 @@
 /* eslint-disable tailwindcss/classnames-order */
-import React from "react"
 
-import ButtonComponent from "@/components/ButtonComponent"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { ForWebAgenciesApiResponse } from "@/services/types/useCase/userback_for_web_agencies"
+import { FC } from "react"
+
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section2: ForWebAgenciesApiResponse["userback_for_web_agencies"]["section2"]
+  section3: ForWebAgenciesApiResponse["userback_for_web_agencies"]["section3"]
+  section4: ForWebAgenciesApiResponse["userback_for_web_agencies"]["section4"]
+  section5: ForWebAgenciesApiResponse["userback_for_web_agencies"]["section5"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({
+  locale,
+  section2,
+  section3,
+  section4,
+  section5,
+}) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/Feedback-for-agencies_1.webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="Collect real-time client feedback"
-          button="Learn more about Screen Annotations"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
+          button={setLocaleText(
+            section2.button1_fa,
+            section2.button1_en,
+            locale
+          )}
         >
-          <p>
-            Get highly contextual feedback with video and annotated screenshots.
-            Stop relying on email and let customers directly tell you what they
-            want from your staging site build. With no guesswork or no
-            interpretation required, your business can run efficiently.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <ListItemWrapper>
         <ListItem
-          icon="/icons/back-and-forth.webp"
-          text="Attach client’s system and browser information to every piece of feedback, so you know all the detail without the extra email, phone call or meeting."
-          title="Skip the back-and-forth"
+          icon={section3.image1}
+          text={setLocaleText(section3.text1_fa, section3.text1_en, locale)}
+          title={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
           hasLine
         />
         <ListItem
-          icon="/icons/Central.webp"
-          text="Create separate projects for every client in Userback, and securely house every piece of feedback in one location for quick access, action and response."
-          title="Centralize it all"
+          icon={section3.image2}
+          text={setLocaleText(section3.text2_fa, section3.text2_en, locale)}
+          title={setLocaleText(section3.title2_fa, section3.title2_en, locale)}
           hasLine
         />
       </ListItemWrapper>
-      <RowComponent imgUrl="/images/Feedback-for-agencies_2.webp">
-        <TextCol header="Invite clients to see their feedback">
-          <p>
-            Give clients access to view and comment on the feedback from their
-            web projects. Deliver it directly to your account manager and
-            developer teams for action or closure in an instant. No more chasing
-            up clients for revisions and approval!
-          </p>
+      <RowComponent imgUrl={section4.image1}>
+        <TextCol
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+        >
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Feedback-for-agencies_3.webp">
-        <TextCol header="Chronology captured">
-          <p>
-            Centralize all feedback and approvals in one location with
-            timestamps and avoid that uncomfortable conversation as the
-            inevitable scope change occurs. Protect your business and bring
-            transparency to clients with minimal effort and zero fuss.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+        >
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

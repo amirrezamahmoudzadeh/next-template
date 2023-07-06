@@ -1,6 +1,7 @@
 /* eslint-disable tailwindcss/classnames-order */
 import React from "react"
 
+import { useLocaleText } from "@/hooks/useLocaleText"
 import FooterCol from "@/components/footer/FooterCol"
 import FooterLinksWrapper from "@/components/footer/FooterLinksWrapper"
 
@@ -22,72 +23,162 @@ const Footer = () => {
           </FooterCol>
           <FooterCol>
             <FooterLinksWrapper
-              header="USE CASE"
+              header={useLocaleText("موارد استفاده", "USE CASE")}
               links={[
-                { title: "Bug Tracking", link: "/bug-tracking" },
-                { title: "Website Feedback", link: "/website-feedback-tool" },
-                { title: "Design Feedback", link: "/design-feedback-tool" },
                 {
-                  title: "User Acceptance Testing",
+                  title: useLocaleText("ردیابی اشکال", "Bug Tracking"),
+                  link: "/bug-tracking",
+                },
+                {
+                  title: useLocaleText(
+                    "تست پذیرش کاربر",
+                    "User Acceptance Testing"
+                  ),
                   link: "/user-acceptance-testing",
                 },
                 {
-                  title: "Software Feature Requests",
+                  title: useLocaleText(
+                    "ابزار بازخورد وب سایت",
+                    "Website Feedback Tool"
+                  ),
+                  link: "/website-feedback-tool",
+                },
+                {
+                  title: useLocaleText(
+                    "ابزار بازخورد طراحی",
+                    "Design Feedback Tool"
+                  ),
+                  link: "/design-feedback-tool",
+                },
+
+                {
+                  title: useLocaleText(
+                    "درخواست ویژگی های نرم افزار",
+                    "Software Feature Requests"
+                  ),
                   link: "/software-feature-requests",
                 },
-                { title: "Product Roadmapping", link: "/product-roadmapping" },
+                {
+                  title: useLocaleText("نقشه راه محصول", "Product Roadmapping"),
+                  link: "/product-roadmapping",
+                },
               ]}
             />
             <FooterLinksWrapper
-              header="USERBACK FOR"
+              header={useLocaleText("USERBACK برای", "USERBACK FOR")}
               links={[
                 {
-                  title: "Product Managers",
+                  title: useLocaleText("مدیران محصول", "For Product Managers"),
                   link: "/userback-for-product-managers",
                 },
-                { title: "Developers", link: "/userback-for-developers" },
-                { link: "/userback-for-web-agencies", title: "Web Agencies" },
+                {
+                  title: useLocaleText("توسعه دهندگان", "For Developers"),
+                  link: "/userback-for-developers",
+                },
+                {
+                  link: "/userback-for-web-agencies",
+                  title: useLocaleText("آژانس های وب", "For Web Agencies"),
+                },
               ]}
             />
             <FooterLinksWrapper
-              header="I’M LOOKING TO"
+              header={useLocaleText("من به دنبال", "I’M LOOKING TO")}
               links={[
-                { link: "/user-feedback-to-fix", title: "Fix Apps & Websites" },
                 {
                   link: "/user-feedback-to-build",
-                  title: "Build Apps & Websites",
+                  title: useLocaleText(
+                    "ساخت اپلیکیشن و وب سایت",
+                    "Build Apps & Websites"
+                  ),
+                },
+                {
+                  link: "/user-feedback-to-fix",
+                  title: useLocaleText(
+                    "رفع برنامه ها و وب سایت ها",
+                    "Fix Apps & Websites"
+                  ),
                 },
                 {
                   link: "/user-feedback-to-enhance",
-                  title: "Enhance Apps & Websites",
+                  title: useLocaleText(
+                    "بهبود برنامه ها و وب سایت ها",
+                    "Enhance Apps & Websites"
+                  ),
                 },
               ]}
             />
           </FooterCol>
           <FooterCol>
             <FooterLinksWrapper
-              header="DEMO CENTER"
-              links={[{ link: "/demo", title: "Hands-on Demo" }]}
-            />
-            <FooterLinksWrapper
-              header="PLATFORM"
+              header={useLocaleText("مرکز دمو", "DEMO CENTER")}
               links={[
-                { link: "/in-app-feedback", title: "In App Feedback" },
-                { link: "/screen-annotation", title: "Screen Annotation" },
-                { link: "/video-recording", title: "Video Recording" },
-                { link: "/session-replay", title: "Session Replay" },
-                { link: "/user-insights", title: "User Insights" },
-                { link: "/feedback-portal", title: "Feedback Portal" },
-                { link: "/integrations", title: "Integrations" },
+                {
+                  link: "/demo",
+                  title: useLocaleText("نسخه ی نمایشی عملی", "Hands-on Demo"),
+                },
               ]}
             />
             <FooterLinksWrapper
-              header="FEEDBACK LIFECYCLE"
+              header={useLocaleText("پلتفرم", "PLATFORM")}
               links={[
-                { link: "/capture-collect", title: "Capture & Collect" },
-                { link: "/assess-prioritize", title: "Assess & Prioritize" },
-                { link: "/assign-action", title: "Assign & Action" },
-                { link: "/follow-up-close", title: "Follow up & Close" },
+                {
+                  link: "/in-app-feedback",
+                  title: useLocaleText(
+                    "بازخورد درون برنامه",
+                    "In App Feedback"
+                  ),
+                },
+                {
+                  link: "/screen-annotation",
+                  title: useLocaleText(
+                    "حاشیه نویسی روی صفحه نمایش",
+                    "Screen Annotation"
+                  ),
+                },
+                {
+                  link: "/video-recording",
+                  title: useLocaleText("ضبط ویدئو", "Video Recording"),
+                },
+                {
+                  link: "/session-replay",
+                  title: useLocaleText("پخش مجدد جلسه", "Session Replay"),
+                },
+                {
+                  link: "/user-insights",
+                  title: useLocaleText("بینش کاربران", "User Insights"),
+                },
+                {
+                  link: "/feedback-portal",
+                  title: useLocaleText("پورتال بازخورد", "Feedback Portal"),
+                },
+                {
+                  link: "/integrations",
+                  title: useLocaleText("ادغام ها", "Integrations"),
+                },
+              ]}
+            />
+            <FooterLinksWrapper
+              header={useLocaleText("چرخه بازخورد", "FEEDBACK LIFECYCLE")}
+              links={[
+                {
+                  link: "/capture-collect",
+                  title: useLocaleText("ضبط و جمع آوری", "Capture & Collect"),
+                },
+                {
+                  link: "/assess-prioritize",
+                  title: useLocaleText(
+                    "ارزیابی و اولویت بندی",
+                    "Assess & Prioritize"
+                  ),
+                },
+                {
+                  link: "/assign-action",
+                  title: useLocaleText("تعیین و اقدام", "Assign & Action"),
+                },
+                {
+                  link: "/follow-up-close",
+                  title: useLocaleText("پیگیری و بستن", "Follow up & Close"),
+                },
               ]}
             />
           </FooterCol>
@@ -95,46 +186,90 @@ const Footer = () => {
             <FooterLinksWrapper
               header="RESOURCES"
               links={[
-                { link: "/blog", title: "Blog" },
-                { link: "/integrations", title: "Integrations" },
-                { link: "", title: "Documentation" },
-                { link: "", title: "Support Articles" },
-                { link: "", title: "API Reference" },
-                { link: "", title: "Browser Extension" },
+                { link: "/blog", title: useLocaleText("وبلاگ", "Blog") },
+                {
+                  link: "/integrations",
+                  title: useLocaleText("ادغام ها", "Integrations"),
+                },
+                { link: "", title: useLocaleText("مستندات", "Documentation") },
+                {
+                  link: "",
+                  title: useLocaleText("مقالات پشتیبانی", "Support Articles"),
+                },
+                { link: "", title: useLocaleText("مرجع API", "API Refrence") },
+                {
+                  link: "",
+                  title: useLocaleText("افزونه مرورگر", "Browser Extension"),
+                },
               ]}
             />
             <FooterLinksWrapper
-              header="USERVERSITY"
-              links={[{ link: "", title: "Content Hub" }]}
+              header={useLocaleText("کاربری", "Userversity")}
+              links={[
+                { link: "", title: useLocaleText("مرکز محتوا", "Content Hub") },
+              ]}
             />
           </FooterCol>
           <FooterCol>
             <FooterLinksWrapper
-              header="COMPANY"
+              header={useLocaleText("شرکت", "COMPANY")}
               links={[
-                { link: "/about", title: "About Us" },
-                { link: "", title: "Roadmap" },
-                { link: "/terms", title: "Terms and Conditions" },
-                { link: "/privacy", title: "Privacy Policy" },
-                { link: "/security", title: "Security Overview" },
-                { link: "/gdpr-commitment", title: "GDPR Commitment" },
+                {
+                  link: "/about",
+                  title: useLocaleText("درباره ما", "About Us"),
+                },
+                { link: "", title: useLocaleText("نقشه راه", "Roadmap") },
+                {
+                  link: "/terms",
+                  title: useLocaleText(
+                    "قوانین و مقررات",
+                    "Terms and Conditions"
+                  ),
+                },
+                {
+                  link: "/privacy",
+                  title: useLocaleText("حریم خصوصی", "Privacy Policy"),
+                },
+                {
+                  link: "/security",
+                  title: useLocaleText("مروری بر امنیت", "Security Overview"),
+                },
+                {
+                  link: "/gdpr-commitment",
+                  title: useLocaleText("تعهد GDPR", "GDPR Commitment"),
+                },
               ]}
             />
             <FooterLinksWrapper
-              header="COMPARE"
+              header={useLocaleText("مقایسه", "COMPARE")}
               links={[
-                { link: "/marker-alternative", title: "Userback vs Marker.io" },
+                {
+                  link: "/marker-alternative",
+                  title: useLocaleText(
+                    "Userback و Marker.io",
+                    "Userback vs Marker.io"
+                  ),
+                },
                 {
                   link: "/usersnap-alternative",
-                  title: "Userback vs Usersnap",
+                  title: useLocaleText(
+                    "Userback و Usersnap",
+                    "Userback vs Usersnap"
+                  ),
                 },
-                { link: "/bugherd-alternative", title: "Userback vs Bugherd" },
+                {
+                  link: "/bugherd-alternative",
+                  title: useLocaleText(
+                    "Userback و Bugherd",
+                    "Userback vs Bugherd"
+                  ),
+                },
               ]}
             />
           </FooterCol>
         </div>
         <div className="flex items-center justify-center py-10">
-          <h6>Copyright © 2023 Userback. All Rights Reserved.</h6>
+          <h6>{useLocaleText("کپی رایت ۱۴۰۲.کلیه حقوق این سایت متعلق به شرکت Userback است.","Copyright © 2023 Userback. All Rights Reserved.")}</h6>
         </div>
       </div>
     </div>

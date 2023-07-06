@@ -1,69 +1,123 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { CaptureCollectaptureCollectApiResponse } from "@/services/types/platform/capture_collect"
+import { FC } from "react"
+
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const CaptureCollectItems = () => {
+interface Props {
+  section4: CaptureCollectaptureCollectApiResponse["capture_and_collect"]["section4"]
+  section5: CaptureCollectaptureCollectApiResponse["capture_and_collect"]["section5"]
+  section6: CaptureCollectaptureCollectApiResponse["capture_and_collect"]["section6"]
+  section7: CaptureCollectaptureCollectApiResponse["capture_and_collect"]["section7"]
+  locale: string
+}
+
+const CaptureCollectItems: FC<Props> = ({
+  locale,
+  section4,
+  section5,
+  section6,
+  section7,
+}) => {
   return (
     <div className="flex flex-col gap-32">
       <RowComponent imgUrl="/images/Capture-Feedback (1).webp">
         <TextCol
-          header="Set the standard"
-          button="Learn more about Screen Annotations"
+          header={setLocaleText(
+            section4.title1_fa,
+            section4.title1_en,
+            locale as string
+          )}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale as string
+          )}
         >
           <p className="font-bold">
-            Let your users provide standardized bug reports, feature requests
-            and general feedback ‘on the fly’ without leaving your app.
+            {setLocaleText(
+              section4.title2_fa,
+              section4.title2_en,
+              locale as string
+            )}
           </p>
           <p>
-            Feedback types are consistent, predictably in one place, and with
-            the visual and technical context you need to resolve bugs or action
-            the feedback. Easy for users, easy for you.
+            {setLocaleText(
+              section4.text1_fa,
+              section4.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Userback_Collect_1.webp">
-        <TextCol header="Stop pushing">
-          <p className="font-bold">
-            Start ‘pulling in’ feedback rather than ‘pushing out’ or chasing
-            surveys to collect it.
-          </p>
+      <RowComponent imgUrl={section5.image1}>
+        <TextCol
+          header={setLocaleText(
+            section5.title1_fa,
+            section5.title1_en,
+            locale as string
+          )}
+        >
           <p>
-            Chasing user needs and feedback at the required pace for the speed
-            of business today is a nearly impossible task. Flip feedback from
-            outbound to inbound with a healthy feedback channel of ideas,
-            priorities, screen grabs and videos of the user’s experience.
+            {setLocaleText(
+              section5.text1_fa,
+              section5.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>
       <ListItemWrapper>
         <ListItem
           hasLine
-          icon="/images/collect_javascript_1.webp"
-          text="Customize how users give you feedback from inside your web applications."
-          title="Javascript API"
+          icon={section6.image1}
+          text={setLocaleText(
+            section6.text1_fa,
+            section6.text1_en,
+            locale as string
+          )}
+          title={setLocaleText(
+            section6.title1_fa,
+            section6.title1_en,
+            locale as string
+          )}
           button="Discover Javascript API"
         />
         <ListItem
           hasLine
-          icon="/images/collect_browser-extension.webp"
-          text="Capture lightning-fast feedback from any web page with annotated screenshots and video recordings."
-          title="Browser Extensions"
+          icon={section6.image2}
+          text={setLocaleText(
+            section6.text2_fa,
+            section6.text2_en,
+            locale as string
+          )}
+          title={setLocaleText(
+            section6.title2_fa,
+            section6.title2_en,
+            locale as string
+          )}
           button="Learn about extensions"
         />
       </ListItemWrapper>
-      <RowComponent imgUrl="/images/feedback-portal_1 (1).webp">
-        <TextCol header="Hear more from users">
-          <p className="font-bold">
-            Get a more accurate representation of what your actual user base
-            needs.
-          </p>
+      <RowComponent imgUrl={section7.image1}>
+        <TextCol
+          header={setLocaleText(
+            section7.title1_fa,
+            section7.title1_en,
+            locale as string
+          )}
+        >
           <p>
-            Let your users provide input and ideas into your product, and show
-            their priorities through upvoting. Collect it all in a dedicated
-            portal where you can build loyalty and community at the same time.
+            {setLocaleText(
+              section7.text1_fa,
+              section7.text1_en,
+              locale as string
+            )}
           </p>
         </TextCol>
       </RowComponent>

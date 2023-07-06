@@ -1,64 +1,68 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { FC } from "react"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { WebsiteFeedbackToolApiRespone } from "@/services/types/useCase/website_feedback_tool"
+
 import ListItem from "@/components/ListItem"
 import ListItemWrapper from "@/components/ListItemWrapper"
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section2: WebsiteFeedbackToolApiRespone["website_feedback_tool"]["section2"]
+  section3: WebsiteFeedbackToolApiRespone["website_feedback_tool"]["section3"]
+  section4: WebsiteFeedbackToolApiRespone["website_feedback_tool"]["section4"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({ locale, section2, section3, section4 }) => {
   return (
     <div className="flex flex-col gap-32">
-      <RowComponent imgUrl="/images/Website-Feedback_1-1 (1).webp">
+      <RowComponent imgUrl={section2.image1}>
         <TextCol
-          header="Increase clarity with video"
+          header={setLocaleText(section2.title1_fa, section2.title1_en, locale)}
           items={[
-            "No more email back-and-forth",
-            "Get full context with supporting audio",
-            "Complete with user information",
+            setLocaleText(section2.text2_fa, section2.text2_en, locale),
+            setLocaleText(section2.text3_fa, section2.text3_en, locale),
+            setLocaleText(section2.text4_fa, section2.text4_en, locale),
           ]}
-          button="Learn more about Screen Annotations"
+          button={setLocaleText(
+            section2.button1_fa,
+            section2.button1_en,
+            locale
+          )}
         >
-          <p>
-            Take the guesswork out of reviewing and interpreting user feedback
-            and keep your developers focused on what counts! Streamline and
-            simplify the feedback process and empower your users to tell you
-            exactly what they want with video recording, supported by full
-            audio.
-          </p>
+          <p>{setLocaleText(section2.text1_fa, section2.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
       <ListItemWrapper>
         <ListItem
-          icon="/icons/website-feedback-tool_1.webp"
-          text="Instantly collect actionable feedback from your website."
-          title="Get real-time feedback"
+          icon={section3.image1}
+          text={setLocaleText(section3.text1_fa, section3.text1_en, locale)}
+          title={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
           hasLine={false}
         />
         <ListItem
-          icon="/icons/website-feedback-tool_2.webp"
-          text="Give every piece of feedback context with on-screen annotations."
-          title="Add context"
+          icon={section3.image2}
+          text={setLocaleText(section3.text2_fa, section3.text2_en, locale)}
+          title={setLocaleText(section3.title2_fa, section3.title2_en, locale)}
           hasLine={false}
         />
         <ListItem
-          icon="/icons/website-feedback-tool_3.webp"
-          text="Respond to feedback and resolve issues fast."
-          title="Accelerate development"
+          icon={section3.image3}
+          text={setLocaleText(section3.text3_fa, section3.text3_en, locale)}
+          title={setLocaleText(section3.title3_fa, section3.title3_en, locale)}
           hasLine={false}
         />
       </ListItemWrapper>
-      <RowComponent imgUrl="/images/UAT_1 (1).webp">
+      <RowComponent imgUrl={section4.image1}>
         <div className="flex flex-col items-start gap-4">
           <h1 className="text-[32px] font-medium">
-            Do User Acceptance Testing like never before
+            {setLocaleText(section4.title1_fa, section4.title1_en, locale)}
           </h1>
           <p>
-            Recreate issues throughout the UAT process with complete clarity of
-            the contributing factors. If you’re relying on email and written
-            communication, maybe it’s time to discover how Userback’s annotated
-            screenshots, video recordings and full session replays (complete
-            with automatically captured browser and system information) can get
-            you to the heart of issues faster.
+            {setLocaleText(section4.text1_fa, section4.text1_en, locale)}
           </p>
         </div>
       </RowComponent>

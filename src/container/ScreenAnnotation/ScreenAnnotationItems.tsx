@@ -1,37 +1,39 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { ScreenAnnotationApiResponse } from "@/services/types/platform/screen_annotation"
+import { FC } from "react"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const ScreenAnnotationItems = () => {
+interface Props {
+  section3: ScreenAnnotationApiResponse["screen_annotation"]["section3"]
+  section4: ScreenAnnotationApiResponse["screen_annotation"]["section4"]
+  locale: string
+}
+
+const ScreenAnnotationItems: FC<Props> = ({ locale, section3, section4 }) => {
   return (
     <div className="flex flex-col gap-32 py-32">
-      <RowComponent imgUrl="/images/annotate_1.webp">
-        <TextCol header="Accurate feedback now means less back-and-forth later">
-          <p>
-            Vague feedback is time-consuming to understand and resolve. Visual
-            context provides a precise description to accelerate triage of
-            software bugs. Screen annotations get clear feedback from your user
-            to your developer team via Userback’s robust integrations with no
-            additional effort… Add notes, highlights, and other visual cues to
-            your screen and provide a more concrete and specific representation
-            of your thoughts.
-          </p>
+      <RowComponent imgUrl={section3.image1}>
+        <TextCol
+          header={setLocaleText(section3.title1_fa, section3.title1_en, locale)}
+        >
+          <p>{setLocaleText(section3.text1_fa, section3.text1_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Feedback-for-agencies_1.webp">
+      <RowComponent imgUrl={section4.image1}>
         <TextCol
-          header="Collect feedback simply"
-          button="Learn more about video recording"
+          header={setLocaleText(section4.title1_fa, section4.title1_en, locale)}
+          button={setLocaleText(
+            section4.button1_fa,
+            section4.button1_en,
+            locale
+          )}
         >
-          <p>
-            Make it easy for your users to give you feedback. Make it easy for
-            your team to interpret feedback. Userback Screen Annotation feature
-            works across any device and any browser to give you and your users
-            the ultimate flexibility to provide insightful feedback instantly.
-            It’s the perfect companion to Video Recording.
-          </p>
-          <p>Say hello to improved feedback!</p>
+          <p>{setLocaleText(section4.text1_fa, section4.text1_en, locale)}</p>
+          <p>{setLocaleText(section4.text2_fa, section4.text2_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

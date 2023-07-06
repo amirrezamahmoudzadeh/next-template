@@ -1,42 +1,40 @@
 /* eslint-disable tailwindcss/classnames-order */
 
+import { setLocaleText } from "@/functions/setLocaleText"
+import { InAppFeedbackApiResponse } from "@/services/types/platform/in_app_feedback"
+import { FC } from "react"
+
 import RowComponent from "@/components/RowComponent"
 import TextCol from "@/components/TextCol"
 
-const FixItems = () => {
+interface Props {
+  section6: InAppFeedbackApiResponse["in_app_feedback"]["section6"]
+  section5: InAppFeedbackApiResponse["in_app_feedback"]["section5"]
+  locale: string
+}
+
+const FixItems: FC<Props> = ({ locale, section6, section5 }) => {
   return (
     <div className="flex flex-col gap-32 py-32">
-      <RowComponent imgUrl="/images/feedback-for-building_1.webp">
+      <RowComponent imgUrl={section5.image1}>
         <TextCol
-          header="Simple for users, powerful for teams"
-          button="See Userback in action"
+          header={setLocaleText(section5.title1_fa, section5.title1_en, locale)}
+          button={setLocaleText(
+            section5.button1_fa,
+            section5.button1_en,
+            locale
+          )}
         >
-          <p>
-            Speed up your development lifecycle and product decisions with fast,
-            simple, and robust tooling.
-          </p>
-          <p>
-            Traditional surveys and interviews are time-consuming and hard to
-            manage. Userback’s feedback tool is fast, simple, and robust whether
-            you’re a small or large distributed team. Collect feedback directly
-            within your app or website and make it easy to get the feedback you
-            need to make informed product decisions.
-          </p>
+          <p>{setLocaleText(section5.text1_fa, section5.text1_en, locale)}</p>
+          <p>{setLocaleText(section5.text2_fa, section5.text2_en, locale)}</p>
         </TextCol>
       </RowComponent>
-      <RowComponent imgUrl="/images/Design-Feedback_1-1.png">
-        <TextCol header="Install effortlessly">
-          <p>
-            Integrate the widget in under 5 minutes and instantly collect better
-            user feedback with JavaScript API, React and Vue application
-            options, or use the Browser Extension for the simplest setup
-            experience possible.
-          </p>
-          <p>
-            No specialist skills or steep learning curves required. Just a
-            plug-and-play feedback platform capable of managing the entire
-            feedback lifecycle.
-          </p>
+      <RowComponent imgUrl={section6.image1}>
+        <TextCol
+          header={setLocaleText(section6.title1_fa, section6.title1_en, locale)}
+        >
+          <p>{setLocaleText(section6.text1_fa, section6.text1_en, locale)}</p>
+          <p>{setLocaleText(section6.text2_fa, section6.text2_en, locale)}</p>
         </TextCol>
       </RowComponent>
     </div>

@@ -1,6 +1,10 @@
-import React from "react"
+import React, { FC } from "react"
 
-const SingleVideo = () => {
+interface Props {
+  video : string
+}
+
+const SingleVideo:FC<Props> = ({video}) => {
   return (
     <div className="flex flex-col py-16">
       <video
@@ -13,7 +17,7 @@ const SingleVideo = () => {
         muted={true}
       >
         <source
-          src="https://userback.io/wp-content/uploads/2022/12/screen_annotation_u.mp4"
+          src={video}
           type="video/mp4"
         />
       </video>
