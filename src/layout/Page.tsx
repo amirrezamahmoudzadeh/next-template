@@ -1,19 +1,17 @@
-import { useState } from "react";
-import Head from "next/head";
-import { motion } from "framer-motion";
+import { useState } from "react"
+import Head from "next/head"
+import { useRouter } from "next/router"
+import { setLocaleText } from "@/functions/setLocaleText"
+import { useDisclosure } from "@chakra-ui/react"
+import { motion } from "framer-motion"
 
+import { pageComponentProps } from "@/types/general"
+import { useLocaleText } from "@/hooks/useLocaleText"
+import SearchDrawer from "@/components/SearchDrawer"
 
-
-import { pageComponentProps } from "@/types/general";
-import SearchDrawer from "@/components/SearchDrawer";
-
-
-
-import Footer from "./Footer";
-import MobileNav from "./MobileNav";
-import TopNav from "./TopNav";
-import { useDisclosure } from "@chakra-ui/react";
-
+import Footer from "./Footer"
+import MobileNav from "./MobileNav"
+import TopNav from "./TopNav"
 
 const Page: React.FC<pageComponentProps> = ({
   title,
@@ -23,13 +21,15 @@ const Page: React.FC<pageComponentProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const { isOpen, onOpen, onClose } = useDisclosure()
-
+  const { locale } = useRouter()
 
   return (
     <div className="bg-[#232e3a]">
       {title && (
         <Head>
-          <title>{title} | Userback</title>
+          <title>
+            {title} | {setLocaleText("وبسایت", "Userback", locale as string)}
+          </title>
         </Head>
       )}
       <SearchDrawer isOpen={isOpen} onClose={onClose} />
