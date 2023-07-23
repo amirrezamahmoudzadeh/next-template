@@ -1,12 +1,15 @@
-import React from "react";
-import Link from "next/link";
-import { ExternalLink } from "@/functions/ExternalLinks";
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react";
-import { useLocaleText } from "@/hooks/useLocaleText";
+import React from "react"
+import Link from "next/link"
+import { ExternalLink } from "@/functions/ExternalLinks"
+import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+} from "@chakra-ui/react"
 
-
-
-
+import { useLocaleText } from "@/hooks/useLocaleText"
 
 interface Props {
   title: string
@@ -34,6 +37,7 @@ const MobileNavItem: React.FC<Props> = ({ links, title }) => {
               as="span"
               flex="1"
               textAlign="left"
+              _rtl={{ textAlign: "right" }}
               className="text-xl sm:text-2xl"
             >
               {title}
